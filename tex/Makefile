@@ -20,11 +20,11 @@ all:	book.tex
 	latex book
 	makeindex book
 	latex book
-	dvips -t letter -Ppdf -o thinkpython.ps book
-#	dvips -T 6.75in,9.25in -Ppdf -o thinkpython.ps book
-#	dvips -t b5 -Ppdf -o thinkpython.ps book
-#	dvips -T 7in,10in -Ppdf -o thinkpython.ps book
-	open thinkpython.ps
+	dvips -t letter -Ppdf -o thinkruby.ps book
+#	dvips -T 6.75in,9.25in -Ppdf -o thinkruby.ps book
+#	dvips -t b5 -Ppdf -o thinkruby.ps book
+#	dvips -T 7in,10in -Ppdf -o thinkruby.ps book
+	open thinkruby.ps
 
 html:	book.tex header.html footer.html
 	rm -rf html
@@ -38,17 +38,17 @@ html:	book.tex header.html footer.html
 	cp up.png next.png back.png html
 	mv index.html book.css book*.html book*.png *motif.gif html
 
-DEST = /home/downey/public_html/greent/thinkpython
+DEST = /home/downey/public_html/greent/thinkruby
 
 distrib:
-	ps2pdf $(PDFFLAGS) thinkpython.ps
+	ps2pdf $(PDFFLAGS) thinkruby.ps
 	rm -rf dist
 	mkdir dist dist/tex dist/tex/figs
-	rsync -a thinkpython.pdf thinkpython.ps html dist
+	rsync -a thinkruby.pdf thinkruby.ps html dist
 	rsync -a Makefile book.tex latexonly htmlonly dist/tex
 	rsync -a figs/*.fig figs/*.eps dist/tex/figs
-	cd dist; zip -r thinkpython.tex.zip tex
-	cd dist; zip -r thinkpython.html.zip html
+	cd dist; zip -r thinkruby.tex.zip tex
+	cd dist; zip -r thinkruby.html.zip html
 	rsync -a dist/* $(DEST)
 	chmod -R o+r $(DEST)/*
 
