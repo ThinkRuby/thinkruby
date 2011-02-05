@@ -32,9 +32,9 @@
 \usepackage{hevea}
 \usepackage{upquote}
 
-\title{Think Python}
-\newcommand{\thetitle}{Think Python: How to Think Like a Computer Scientist}
-\newcommand{\theversion}{1.1.22}
+\title{Think Ruby}
+\newcommand{\thetitle}{Think Ruby: How to Think Like a Computer Scientist}
+\newcommand{\theversion}{0.1}
 
 % these styles get translated in CSS for the HTML version
 \newstyle{a:link}{color:black;}
@@ -75,7 +75,7 @@
 \vspace*{2.0in}
 
 \begin{spacing}{3}
-{\huge Think Python}\\
+{\huge Think Ruby}\\
 {\Large How to Think Like a Computer Scientist}
 \end{spacing}
 
@@ -104,7 +104,7 @@ Version \theversion
 \vspace*{2.0in}
 
 \begin{spacing}{3}
-{\huge Think Python}\\
+{\huge Think Ruby}\\
 {\Large How to Think Like a Computer Scientist}
 \end{spacing}
 
@@ -724,13 +724,13 @@ On one level, you will be learning to program, a useful
 skill by itself.  On another level, you will use programming as a means to
 an end.  As we go along, that end will become clearer.
 
-\section{The Python programming language}
+\section{The Ruby programming language}
 \index{programming language}
 \index{language!programming}
 
-The programming language you will learn is Python. Python is
+The programming language you will learn is Ruby. Ruby is
 an example of a {\bf high-level language}; other high-level languages
-you might have heard of are C, C++, Perl, and Java.
+you might have heard of are C, C++, Perl, Python, and Java.
 
 There are
 also {\bf low-level languages}, sometimes referred to as ``machine
@@ -785,43 +785,47 @@ compiled, you can execute it repeatedly without further translation.
 \centerline{\includegraphics[height=0.77in]{figs/compile.eps}}
 \afterfig
 
-Python is considered an interpreted language because Python programs
-are executed by an interpreter.  There are two ways to use the
-interpreter: {\bf interactive mode} and {\bf script mode}. In
-interactive mode, you type Python programs and the interpreter prints
-the result:
+Ruby is considered an interpreted language because Ruby programs
+are executed by an interpreter. There are two commands that interpret Ruby:
+called {\tt ruby} and {\tt irb}.
 
-\index{interactive mode}
-\index{script mode}
+In {\tt irb}, you type Ruby programs and the interpreter prints the result:
+
+\index{irb}
 
 \beforeverb
 \begin{verbatim}
->>> 1 + 1
-2
+ruby-1.9.2-p136 :001 > 1 + 1
+ => 2 
 \end{verbatim}
 \afterverb
 %
-The chevron, {\tt >>>}, is the
-{\bf prompt} the interpreter uses to indicate that it is ready.  If
-you type {\tt 1 + 1}, the interpreter replies {\tt 2}.
+{\tt ruby-1.9.2-p136 :001 >}, is the {\bf prompt} the interpreter uses to
+indicate that it is ready. The first part shows the version of Ruby that you
+are using. Don't worry if your version doesn't match ours exactly. The second
+part keeps a count of the number of lines you have typed. For the rest of the
+book, we will just be using a single {/tt >} to indicate an {/tt irb} prompt.
+
+If you type {\tt 1 + 1}, the interpreter replies {\tt 2}. The {\tt =>} symbol
+indicates that the interpreter is showing you the result.
 
 \index{prompt}
 
-Alternatively, you can store code in a file and use the interpreter to
+Alternatively, you can store code in a file and use {\tt ruby} to
 execute the contents of the file, which is called a {\bf script}.  By
-convention, Python scripts have names that end with {\tt .py}.
+convention, Ruby scripts have names that end with {\tt .rb}.
 
 \index{script}
 
 To execute the script, you have to tell the interpreter the name of
-the file.  In a UNIX command window, you would type {\tt python
-dinsdale.py}.  In other development environments, the details of
+the file.  In a UNIX command window, you would type {\tt ruby
+dinsdale.rb}.  In other development environments, the details of
 executing scripts are different.  You can find instructions for
-your environment at the Python website \url{python.org}.
+your environment at the Ruby website \url{ruby-lang.org}.
 
-\index{testing!interactive mode}
+\index{testing!in irb}
 
-Working in interactive mode is convenient for testing small pieces of
+Working in {\tt irb} is convenient for testing small pieces of
 code because you can type and execute them immediately.  But for
 anything more than a few lines, you should save your code
 as a script so you can modify and execute it in the future.
@@ -892,7 +896,7 @@ to distinguish between them in order to track them down more quickly.
 \index{error!syntax}
 \index{error message}
 
-Python can only execute a program if the syntax is
+Ruby can only execute a program if the syntax is
 correct; otherwise, the interpreter displays an error message.
 {\bf Syntax} refers to the structure of a program and the rules about
 that structure. \index{syntax}
@@ -905,8 +909,8 @@ For example, parentheses have to come in matching pairs, so
 
 In English readers can tolerate most syntax errors, which is why we
 can read the poetry of e. e. cummings without spewing error messages.
-Python is not so forgiving.  If there is a single syntax error
-anywhere in your program, Python will display an error message and quit,
+Ruby is not so forgiving.  If there is a single syntax error
+anywhere in your program, Ruby will display an error message and quit,
 and you will not be able to run your program. During the first few
 weeks of your programming career, you will probably spend a lot of
 time tracking down syntax errors.  As you gain experience, you will
@@ -1128,17 +1132,17 @@ language.
 
 Traditionally, the first program you write in a new language
 is called ``Hello, World!'' because all it does is display the
-words, ``Hello, World!''  In Python, it looks like this:
+words, ``Hello, World!''  In Ruby, it looks like this:
 
 \beforeverb
 \begin{verbatim}
-print 'Hello, World!'
+> puts 'Hello, World!'
+Hello, World!
+ => nil
 \end{verbatim}
 \afterverb
 %
-This is an example of a {\bf print statement}\footnote{In Python 3.0,
-  {\tt print} is a function, not a statement, so the syntax is {\tt
-    print('Hello, World!')}.  We will get to functions soon!}, which
+This is an example of a {\bf print statement}, which
 doesn't actually print anything on paper.  It displays a value on the
 screen.  In this case, the result is the words
 
@@ -1153,12 +1157,15 @@ Hello, World!
 The quotation marks in the program mark the beginning and end
 of the text to be displayed; they don't appear in the result.
 
+You might have noticed that the result of a print statement is called ``nil''.
+Don't worry about this for now. We will explore this later.
+
 \index{quotation mark}
 \index{print statement}
 \index{statement!print}
 
 Some people judge the quality of a programming language by the
-simplicity of the ``Hello, World!'' program.  By this standard, Python
+simplicity of the ``Hello, World!'' program.  By this standard, Ruby
 does about as well as possible.
 
 
@@ -1167,13 +1174,13 @@ does about as well as possible.
 
 It is a good idea to read this book in front of a computer so you can
 try out the examples as you go.  You can run most of the examples in
-interactive mode, but if you put the code into a script, it is easier
+{\tt irb}, but if you put the code into a script, it is easier
 to try out variations.
 
 Whenever you are experimenting with a new feature, you should try
 to make mistakes.  For example, in the ``Hello, world!'' program,
 what happens if you leave out one of the quotation marks?  What
-if you leave out both?  What if you spell {\tt print} wrong?
+if you leave out both?  What if you spell {\tt puts} wrong?
 
 \index{error message}
 
@@ -1223,7 +1230,7 @@ with my thoughts about debugging.  I hope they help!
 a solution, and expressing the solution.
 \index{problem solving}
 
-\item[high-level language:]  A programming language like Python that
+\item[high-level language:]  A programming language like Ruby that
 is designed to be easy for humans to read and write.
 \index{high-level language}
 
@@ -1265,13 +1272,9 @@ that it is ready to take input from the user.
 interpreted).
 \index{script}
 
-\item[interactive mode:] A way of using the Python interpreter by
+\item[irb:] Interactive Ruby: a way of using the Ruby interpreter by
 typing commands and expressions at the prompt.
 \index{interactive mode}
-
-\item[script mode:] A way of using the Python interpreter to read
-and execute statements in a script.
-\index{script mode}
 
 \item[program:] A set of instructions that specifies a computation.
 \index{program}
@@ -1320,7 +1323,7 @@ a program, analogous to a word in a natural language.
 \item[parse:]  To examine a program and analyze the syntactic structure.
 \index{parse}
 
-\item[print statement:]  An instruction that causes the Python
+\item[print statement:]  An instruction that causes the Ruby
 interpreter to display a value on the screen.
 \index{print statement}
 \index{statement!print}
@@ -1332,36 +1335,17 @@ interpreter to display a value on the screen.
 \section{Exercises}
 
 \begin{ex}
-Use a web browser to go to the Python website \url{python.org}.
-This page contains information about Python and links
-to Python-related pages, and it gives you the ability to search
-the Python documentation.
-
-For example, if you enter {\tt print} in the search window, the
-first link that appears is the documentation of the {\tt print}
-statement.  At this point, not all of it will make sense to you,
-but it is good to know where it is.
+Use a web browser to go to the Think Ruby website \url{thinkruby.org}.
+This page contains information about this book and links
+to Ruby-related pages.
 
 \index{documentation}
-\index{python.org}
+\index{thinkruby.org}
 \end{ex}
 
 \begin{ex}
-Start the Python interpreter and type {\tt help()} to start the online
-help utility.  Or you can type \verb"help('print')" to get information
-about the {\tt print} statement.
-
-If this example doesn't work, you
-may need to install additional Python documentation or set an
-environment variable; the details depend on your operating system and
-version of Python.
-
-\index{help utility}
-\end{ex}
-
-\begin{ex}
-Start the Python interpreter and use it as a calculator.
-Python's syntax for math operations is almost the same as
+Start the Ruby interpreter and use it as a calculator.
+Ruby's syntax for math operations is almost the same as
 standard mathematical notation.  For example, the symbols
 {\tt +}, {\tt -} and {\tt /} denote addition, subtraction
 and division, as you would expect.  The symbol for
