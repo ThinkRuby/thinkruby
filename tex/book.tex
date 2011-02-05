@@ -29,7 +29,7 @@
 \usepackage{exercise}                        % texlive-latex-extra
 \usepackage{makeidx}
 \usepackage{setspace}
-\usepackage{hevea}                           
+\usepackage{hevea}
 \usepackage{upquote}
 
 \title{Think Python}
@@ -213,7 +213,7 @@ class in Java.  I had taught it three times and I was getting
 frustrated.  The failure rate in the class was too high and, even for
 students who succeeded, the overall level of achievement was too low.
 
-One of the problems I saw was the books.  
+One of the problems I saw was the books.
 They were too big, with too much unnecessary detail about Java, and
 not enough high-level guidance about how to program.  And they all
 suffered from the trap door effect: they would start out easy,
@@ -222,7 +222,7 @@ fall out.  The students would get too much new material, too fast,
 and I would spend the rest of the semester picking up the pieces.
 
 Two weeks before the first day of classes, I decided to write my
-own book.  
+own book.
 My goals were:
 
 \begin{itemize}
@@ -234,7 +234,7 @@ than not read 50 pages.
 and define each term at first use.
 
 \item Build gradually. To avoid trap doors, I took the most difficult
-topics and split them into a series of small steps. 
+topics and split them into a series of small steps.
 
 \item Focus on programming, not the programming language.  I included
 the minimum useful subset of Java and left out the rest.
@@ -302,7 +302,7 @@ The result is this book, now with the less grandiose title
   Swampy, a suite of Python programs I wrote for use in my classes.
   Swampy, code examples, and some solutions are available from
   \url{thinkpython.com}.
-  
+
 \item I expanded the discussion of program development plans
   and basic design patterns.
 
@@ -320,7 +320,7 @@ a computer scientist.
 Allen B. Downey \\
 Needham MA\\
 
-Allen Downey is an Associate Professor of Computer Science at 
+Allen Downey is an Associate Professor of Computer Science at
 the Franklin W. Olin College of Engineering.
 
 
@@ -375,7 +375,7 @@ suggestions and corrections over the past few years.  Their
 contributions, and enthusiasm for this project, have been a
 huge help.
 
-If you have a suggestion or correction, please send email to 
+If you have a suggestion or correction, please send email to
 {\tt feedback@thinkpython.com}.  If I make a change based on your
 feedback, I will add you to the contributor list
 (unless you ask to be omitted).
@@ -420,13 +420,13 @@ numerous corrections.
 \item David Kershaw fixed the broken {\tt catTwice} function in Section
 3.10.
 
-\item Eddie Lam has sent in numerous corrections to Chapters 
+\item Eddie Lam has sent in numerous corrections to Chapters
 1, 2, and 3.
 He also fixed the Makefile so that it creates an index the first time it is
-run and helped us set up a versioning scheme.  
+run and helped us set up a versioning scheme.
 
 \item Man-Yong Lee sent in a correction to the example code in
-Section 2.4.  
+Section 2.4.
 
 \item David Mayo pointed out that the word ``unconsciously"
 in Chapter 1 needed
@@ -436,7 +436,7 @@ to be changed to ``subconsciously".
 3.10.
 
 \item Matthew J. Moelter has been a long-time contributor who sent
-in numerous corrections and suggestions to the book.  
+in numerous corrections and suggestions to the book.
 
 \item Simon Dicon Montford reported a missing function definition and
 several typos in Chapter 3.  He also found errors in the {\tt increment}
@@ -473,7 +473,7 @@ of the book, and they have made numerous corrections and suggestions.
 our Latin in Chapter 3.
 
 \item Chris Wrobel made corrections to the code in the chapter on
-file I/O and exceptions. 
+file I/O and exceptions.
 
 \item Moshe Zadka has made invaluable contributions to this project.
 In addition to writing the first draft of the chapter on Dictionaries, he
@@ -883,7 +883,7 @@ are called {\bf bugs} and the process of tracking them down is called
 \index{debugging}
 \index{bug}
 
-Three kinds of errors can occur in a program: syntax errors, runtime 
+Three kinds of errors can occur in a program: syntax errors, runtime
 errors, and semantic errors. It is useful
 to distinguish between them in order to track them down more quickly.
 
@@ -895,7 +895,7 @@ to distinguish between them in order to track them down more quickly.
 Python can only execute a program if the syntax is
 correct; otherwise, the interpreter displays an error message.
 {\bf Syntax} refers to the structure of a program and the rules about
-that structure. \index{syntax} 
+that structure. \index{syntax}
 For example, parentheses have to come in matching pairs, so
 {\tt (1 + 2)} is legal, but {\tt 8)} is a {\bf syntax error}.
 
@@ -1015,7 +1015,7 @@ designed to express computations.}
 \end{quote}
 
 Formal languages tend to have strict rules about syntax.  For example,
-$3 + 3 = 6$ is a syntactically correct mathematical statement, but 
+$3 + 3 = 6$ is a syntactically correct mathematical statement, but
 $3 + = 3 \mbox{\$} 6$ is not.  $H_2O$ is a syntactically correct
 chemical formula, but $_2Zz$ is not.
 
@@ -1183,7 +1183,7 @@ It is better to make mistakes now and on purpose than later
 and accidentally.
 
 Programming, and especially debugging, sometimes brings out strong
-emotions.  If you are struggling with a difficult bug, you might 
+emotions.  If you are struggling with a difficult bug, you might
 feel angry, despondent or embarrassed.
 
 There is evidence that people naturally respond to computers as if
@@ -1622,12 +1622,12 @@ longer a keyword, but {\tt nonlocal} is.}:
 
 \beforeverb
 \begin{verbatim}
-and       del       from      not       while    
-as        elif      global    or        with     
-assert    else      if        pass      yield    
-break     except    import    print              
-class     exec      in        raise              
-continue  finally   is        return             
+and       del       from      not       while
+as        elif      global    or        with
+assert    else      if        pass      yield
+break     except    import    print
+class     exec      in        raise
+continue  finally   is        return
 def       for       lambda    try
 \end{verbatim}
 \afterverb
@@ -1810,7 +1810,7 @@ remember the rules:
 
 \begin{itemize}
 
-\item {\bf P}arentheses have the highest precedence and can be used 
+\item {\bf P}arentheses have the highest precedence and can be used
 to force an expression to evaluate in the order you want. Since
 expressions in parentheses are evaluated first, {\tt 2 * (3-1)} is 4,
 and {\tt (1+1)**(5-2)} is 8. You can also use parentheses to make an
@@ -1825,9 +1825,9 @@ which is higher than {\bf A}ddition and {\bf S}ubtraction, which also
 have the same precedence.  So {\tt 2*3-1} is 5, not 4, and
 {\tt 6+4/2} is 8, not 5.
 
-\item Operators with the same precedence are evaluated from left to 
+\item Operators with the same precedence are evaluated from left to
 right.  So in the expression {\tt degrees / 2 * pi}, the division
-happens first and the result is multiplied by {\tt pi}.  
+happens first and the result is multiplied by {\tt pi}.
 To divide by $2 \pi$, you can use parentheses or write {\tt degrees / 2 / pi}.
 
 \end{itemize}
@@ -1925,7 +1925,7 @@ This comment contains useful information that is not in the code:
 
 \beforeverb
 \begin{verbatim}
-v = 5     # velocity in meters/second. 
+v = 5     # velocity in meters/second.
 \end{verbatim}
 \afterverb
 %
@@ -2005,7 +2005,7 @@ get an error message; you just get the wrong answer.
 
 \begin{description}
 
-\item[value:]  One of the basic units of data, like a number or string, 
+\item[value:]  One of the basic units of data, like a number or string,
 that a program manipulates.
 \index{value}
 
@@ -2109,7 +2109,7 @@ Use the Python interpreter to check your answers.
 \end{ex}
 
 \begin{ex}
-Practice using the Python interpreter as a calculator: 
+Practice using the Python interpreter as a calculator:
 \index{calculator}
 
 \begin{enumerate}
@@ -2142,7 +2142,7 @@ Practice using the Python interpreter as a calculator:
 In the context of programming, a {\bf function} is a named sequence of
 statements that performs a computation.  When you define a function,
 you specify the name and the sequence of statements.  Later, you can
-``call'' the function by name.  
+``call'' the function by name.
 We have already seen one example of a {\bf function call}:
 
 \beforeverb
@@ -2534,7 +2534,7 @@ executed before the first time it is called.
 
 \begin{ex}
 Move the last line of this program
-to the top, so the function call appears before the definitions. Run 
+to the top, so the function call appears before the definitions. Run
 the program and see what error
 message you get.
 \end{ex}
@@ -2746,9 +2746,9 @@ previous example looks like this:
 
 The frames are arranged in a stack that indicates which function
 called which, and so on.  In this example, \verb"print_twice"
-was called by \verb"cat_twice", and \verb"cat_twice" was called by 
+was called by \verb"cat_twice", and \verb"cat_twice" was called by
 \verb"__main__", which is a special name for the topmost frame.  When
-you create a variable outside of any function, it belongs to 
+you create a variable outside of any function, it belongs to
 \verb"__main__".
 
 Each parameter refers to the same value as its corresponding
@@ -2761,7 +2761,7 @@ name of the function, and the name of the function that called
 it, and the name of the function that called {\em that}, all the
 way back to \verb"__main__".
 
-For example, if you try to access {\tt cat} from within 
+For example, if you try to access {\tt cat} from within
 \verb"print_twice", you get a {\tt NameError}:
 
 \beforeverb
@@ -2794,7 +2794,7 @@ currently running is at the bottom.
 \index{fruitful function}
 \index{void function}
 \index{function, fruitful}
-\index{function, void} 
+\index{function, void}
 
 Some of the functions we are using, such as the math functions, yield
 results; for lack of a better name, I call them {\bf fruitful
@@ -2856,7 +2856,7 @@ None
 \end{verbatim}
 \afterverb
 %
-The value {\tt None} is not the same as the string \verb"'None'". 
+The value {\tt None} is not the same as the string \verb"'None'".
 It is a special value that has its own type:
 
 \beforeverb
@@ -3088,7 +3088,7 @@ it twice.
 \item Use the modified version of \verb"do_twice" to call
 \verb"print_twice" twice, passing \verb"'spam'" as an argument.
 
-\item Define a new function called 
+\item Define a new function called
 \verb"do_four" that takes a function object and a value
 and calls the function four times, passing the value
 as a parameter.  There should be only
@@ -3106,7 +3106,7 @@ You can see my solution at \url{thinkpython.com/code/do_four.py}.
 This exercise\footnote{Based on an exercise in Oualline, {\em
     Practical C Programming, Third Edition}, O'Reilly (1997)} can be
 done using only the statements and other features we have learned so
-far.  
+far.
 
 \index{grid}
 
@@ -3145,7 +3145,7 @@ so the value printed next appears on the same line.
 
 \beforeverb
 \begin{verbatim}
-print '+', 
+print '+',
 print '-'
 \end{verbatim}
 \afterverb
@@ -3595,7 +3595,7 @@ def arc(t, r, angle):
     n = int(arc_length / 3) + 1
     step_length = arc_length / n
     step_angle = float(angle) / n
-    
+
     for i in range(n):
         fd(t, step_length)
         lt(t, step_angle)
@@ -3702,7 +3702,7 @@ is an example:
 def polyline(t, length, n, angle):
     """Draw n line segments with the given length and
     angle (in degrees) between them.  t is a turtle.
-    """    
+    """
     for i in range(n):
         fd(t, length)
         lt(t, angle)
@@ -3941,7 +3941,7 @@ yields the last two digits.
 \index{operator!logical}
 
 A {\bf boolean expression} is an expression that is either true
-or false.  The following examples use the 
+or false.  The following examples use the
 operator {\tt ==}, which compares two operands and produces
 {\tt True} if they are equal and {\tt False} otherwise:
 
@@ -4161,7 +4161,7 @@ Each condition is checked in order.  If the first is false,
 the next is checked, and so on.  If one of them is
 true, the corresponding branch executes, and the statement
 ends.  Even if more than one condition is true, only the
-first true branch executes.  
+first true branch executes.
 
 
 \section{Nested conditionals}
@@ -4349,7 +4349,7 @@ This figure shows a stack diagram for {\tt countdown} called with
 \afterfig
 
 As usual, the top of the stack is the frame for \verb"__main__".
-It is empty because we did not create any variables in 
+It is empty because we did not create any variables in
 \verb"__main__" or pass any arguments to it.
 
 \index{base case}
@@ -4404,7 +4404,7 @@ message when the maximum recursion depth is reached:
   File "<stdin>", line 2, in recurse
   File "<stdin>", line 2, in recurse
   File "<stdin>", line 2, in recurse
-                  .   
+                  .
                   .
                   .
   File "<stdin>", line 2, in recurse
@@ -4585,7 +4585,7 @@ and noise power with floating-point values.
 \index{floor division}
 \index{division!floor}
 
-In general, error messages tell you where the problem was discovered, 
+In general, error messages tell you where the problem was discovered,
 but that is often not where it was caused.
 
 
@@ -4599,7 +4599,7 @@ number is divided by another.
 \index{modulus operator}
 \index{operator!modulus}
 
-\item[boolean expression:]  An expression whose value is either 
+\item[boolean expression:]  An expression whose value is either
 {\tt True} or {\tt False}.
 \index{boolean expression}
 \index{expression!boolean}
@@ -4673,7 +4673,7 @@ for any values of $n$ greater than 2.
 \item Write a function named \verb"check_fermat" that takes four
 parameters---{\tt a}, {\tt b}, {\tt c} and {\tt n}---and
 that checks to see if Fermat's theorem holds.  If
-$n$ is greater than 2 and it turns out to be true that 
+$n$ is greater than 2 and it turns out to be true that
 
 \[a^n + b^n = c^n \]
 %
@@ -4913,7 +4913,7 @@ None
 \end{verbatim}
 \afterverb
 %
-By the way, Python provides a built-in function called 
+By the way, Python provides a built-in function called
 {\tt abs} that computes absolute values.
 
 \index{abs function}
@@ -5066,7 +5066,7 @@ The key aspects of the process are:
 
 \begin{enumerate}
 
-\item Start with a working program and make small incremental changes. 
+\item Start with a working program and make small incremental changes.
 At any point, if there is an error, you should have a good idea
 where it is.
 
@@ -5400,7 +5400,7 @@ assume that they work because the people who wrote the built-in
 functions were good programmers.
 
 The same is true when you call one of your own functions.  For
-example, in Section~\ref{boolean}, we wrote a function called 
+example, in Section~\ref{boolean}, we wrote a function called
 \verb"is_divisible" that determines whether one number is divisible by
 another.  Once we have convinced ourselves that this function is
 correct---by examining the code and testing---we can use the function
@@ -5715,11 +5715,11 @@ The Ackermann function, $A(m, n)$, is defined\footnote{See
   \url{wikipedia.org/wiki/Ackermann_function}.}:
 
 \begin{eqnarray}
-A(m, n) = \begin{cases} 
-              n+1 & \mbox{if } m = 0 \\ 
-        A(m-1, 1) & \mbox{if } m > 0 \mbox{ and } n = 0 \\ 
+A(m, n) = \begin{cases}
+              n+1 & \mbox{if } m = 0 \\
+        A(m-1, 1) & \mbox{if } m > 0 \mbox{ and } n = 0 \\
 A(m-1, A(m, n-1)) & \mbox{if } m > 0 \mbox{ and } n > 0.
-\end{cases} 
+\end{cases}
 \end{eqnarray}
 %
 Write a function named {\tt ack} that evaluates Ackerman's function.
@@ -5875,7 +5875,7 @@ a = 3    # a and b are no longer equal
 \afterverb
 %
 The third line changes the value of {\tt a} but does not change the
-value of {\tt b}, so they are no longer equal. 
+value of {\tt b}, so they are no longer equal.
 
 Although multiple assignment is frequently helpful, you should use it
 with caution.  If the values of variables change frequently, it can
@@ -5984,7 +5984,7 @@ body and then go back to step 1.
 \end{enumerate}
 
 This type of flow is called a {\bf loop} because the third step
-loops back around to the top.  
+loops back around to the top.
 
 \index{condition}
 \index{loop}
@@ -6022,7 +6022,7 @@ The condition for this loop is {\tt n != 1}, so the loop will continue
 until {\tt n} is {\tt 1}, which makes the condition false.
 
 Each time through the loop, the program outputs the value of {\tt n}
-and then checks whether it is even or odd.  If it is even, {\tt n} is 
+and then checks whether it is even or odd.  If it is even, {\tt n} is
 divided by 2.  If it is odd, the value of {\tt n} is replaced with
 {\tt n*3+1}. For example, if the argument passed
 to {\tt sequence} is 3, the resulting sequence is 3, 10, 5, 16, 8, 4, 2, 1.
@@ -6412,7 +6412,7 @@ approximation of $\pi$:
 
 \index{pi}
 
-\[\frac{1}{\pi} = \frac{2\sqrt{2}}{9801} 
+\[\frac{1}{\pi} = \frac{2\sqrt{2}}{9801}
 \sum^\infty_{k=0} \frac{(4k)!(1103+26390k)}{(k!)^4 396^{4k}} \]
 
 Write a function called \verb"estimate_pi" that uses this formula
@@ -6435,7 +6435,7 @@ You can see my solution at \url{thinkpython.com/code/pi.py}.
 \index{bracket operator}
 \index{operator!bracket}
 
-A string is a {\bf sequence} of characters.  
+A string is a {\bf sequence} of characters.
 You can access the characters one at a time with the
 bracket operator:
 
@@ -6447,11 +6447,11 @@ bracket operator:
 \afterverb
 %
 The second statement selects character number 1 from {\tt
-fruit} and assigns it to {\tt letter}.  
+fruit} and assigns it to {\tt letter}.
 
 \index{index}
 
-The expression in brackets is called an {\bf index}.  
+The expression in brackets is called an {\bf index}.
 The index indicates which character in the sequence you
 want (hence the name).
 
@@ -6668,7 +6668,7 @@ Python
 \end{verbatim}
 \afterverb
 %
-The operator {\tt [n:m]} returns the part of the string from the 
+The operator {\tt [n:m]} returns the part of the string from the
 ``n-eth'' character to the ``m-eth'' character, including the first but
 excluding the last.  This behavior is counterintuitive, but it might
 help to imagine the indices pointing {\em between} the
@@ -6994,7 +6994,7 @@ def in_both(word1, word2):
 %
 With well-chosen variable names,
 Python sometimes reads like English.  You could read
-this loop, ``for (each) letter in (the first) word, if (the) letter 
+this loop, ``for (each) letter in (the first) word, if (the) letter
 (appears) in (the second) word, print (the) letter.''
 
 Here's what you get if you compare apples and oranges:
@@ -7069,7 +7069,7 @@ of the other, but it contains two errors:
 def is_reverse(word1, word2):
     if len(word1) != len(word2):
         return False
-    
+
     i = 0
     j = len(word2)
 
@@ -7123,7 +7123,7 @@ where the error appears.
 \begin{verbatim}
     while j > 0:
         print i, j        # print here
-        
+
         if word1[i] != word2[j]:
             return False
         i = i+1
@@ -7346,10 +7346,10 @@ necessary, so 'A' shifted by 3 is 'D' and 'Z' shifted by 1 is 'A'.
 Write a function called \verb"rotate_word"
 that takes a string and an integer as parameters, and that returns
 a new string that contains the letters from the original string
-``rotated'' by the given amount.  
+``rotated'' by the given amount.
 
 For example, ``cheer'' rotated by 7 is ``jolly'' and ``melon'' rotated
-by -10 is ``cubed''.  
+by -10 is ``cubed''.
 
 %For example ``sleep''
 %rotated by 9 is ``bunny'' and ``latex'' rotated by 7 is ``shale''.
@@ -7508,7 +7508,7 @@ have no ``e.''
 \end{ex}
 
 
-\begin{ex} 
+\begin{ex}
 Write a function named {\tt avoids}
 that takes a word and a string of forbidden letters, and
 that returns {\tt True} if the word doesn't use any of the forbidden
@@ -7531,7 +7531,7 @@ letters {\tt acefhlo}?  Other than ``Hoe alfalfa?''
 \end{ex}
 
 
-\begin{ex} 
+\begin{ex}
 Write a function named \verb"uses_all" that takes a word and a
 string of required letters, and that returns {\tt True} if the word
 uses all the required letters at least once.  How many words are there
@@ -7542,7 +7542,7 @@ that use all the vowels {\tt aeiou}?  How about {\tt aeiouy}?
 \begin{ex}
 Write a function called \verb"is_abecedarian" that returns
 {\tt True} if the letters in a word appear in alphabetical order
-(double letters are ok).  
+(double letters are ok).
 How many abecedarian words are there?
 \end{ex}
 
@@ -7595,7 +7595,7 @@ means we didn't find an ``e'', so we return {\tt True}.
 %\index{operator!in}
 
 %You could write this function more concisely using the {\tt in}
-%operator, but I started with this version because it 
+%operator, but I started with this version because it
 %demonstrates the logic of the search pattern.
 
 \index{generalization}
@@ -7622,7 +7622,7 @@ is reversed:
 \beforeverb
 \begin{verbatim}
 def uses_only(word, available):
-    for letter in word: 
+    for letter in word:
         if letter not in available:
             return False
     return True
@@ -7639,7 +7639,7 @@ of the word and the string of letters:
 \beforeverb
 \begin{verbatim}
 def uses_all(word, required):
-    for letter in required: 
+    for letter in required:
         if letter not in word:
             return False
     return True
@@ -8385,7 +8385,7 @@ def add_all(t):
 %
 {\tt total} is initialized to 0.  Each time through the loop,
 {\tt x} gets one element from the list.  The {\tt +=} operator
-provides a short way to update a variable.  This 
+provides a short way to update a variable.  This
 {\bf augmented assignment statement}:
 
 \index{update operator}
@@ -8499,7 +8499,7 @@ Write a function that takes a list of numbers and returns the
 cumulative sum; that is, a new list where the $i$th element
 is the sum of the first $i+1$ elements from the original list.
 For example, the cumulative sum of {\tt [1, 2, 3]} is
-{\tt [1, 3, 6]}. 
+{\tt [1, 3, 6]}.
 \end{ex}
 
 
@@ -8665,7 +8665,7 @@ list as a parameter:
 In this case the delimiter is a space character, so
 {\tt join} puts a space between words.  To concatenate
 strings without spaces, you can use the empty string,
-\verb"''", as a delimiter. 
+\verb"''", as a delimiter.
 
 \index{empty string}
 \index{string!empty}
@@ -8795,7 +8795,7 @@ than one name, so we say that the object is {\bf aliased}.
 
 \index{mutability}
 
-If the aliased object is mutable, 
+If the aliased object is mutable,
 changes made with one alias affect
 the other:
 
@@ -9006,7 +9006,7 @@ a list, you can use {\tt pop}, {\tt remove}, {\tt del},
 or even a slice assignment.
 
 To add an element, you can use the {\tt append} method or
-the {\tt +} operator.  But don't forget that these are right: 
+the {\tt +} operator.  But don't forget that these are right:
 
 \beforeverb
 \begin{verbatim}
@@ -9093,7 +9093,7 @@ of a variable using an operator like \verb"+=".
 
 \index{traversal}
 
-\item[reduce:] A processing pattern that traverses a sequence 
+\item[reduce:] A processing pattern that traverses a sequence
 and accumulates the elements into a single result.
 \index{reduce pattern}
 \index{pattern!reduce}
@@ -9265,7 +9265,7 @@ and use that!
 
 Two words are a ``reverse pair'' if each is the reverse of the
 other.  Write a program that finds all the reverse pairs in the
-word list. 
+word list.
 \end{ex}
 
 \begin{ex}
@@ -9760,7 +9760,7 @@ def invert_dict(d):
 \end{verbatim}
 \afterverb
 %
-Each time through the loop, {\tt key} gets a key from {\tt d} and 
+Each time through the loop, {\tt key} gets a key from {\tt d} and
 {\tt val} gets the corresponding value.  If {\tt val} is not in {\tt inv},
 that means we haven't seen it before, so we create a new item and
 initialize it with a {\bf singleton} (a list that contains a
@@ -9828,7 +9828,7 @@ called hash values, to store and look up key-value pairs.
 
 This system works fine if the keys are immutable.  But if the
 keys are mutable, like lists, bad things happen.  For example,
-when you create a key-value pair, Python hashes the key and 
+when you create a key-value pair, Python hashes the key and
 stores it in the corresponding location.  If you modify the
 key and then hash it again, it would go to a different location.
 In that case you might have two entries for the same key,
@@ -9911,7 +9911,7 @@ two items: 0 maps to 0 and 1 maps to 1.
 
 Whenever {\tt fibonacci} is called, it checks {\tt known}.
 If the result is already there, it can return
-immediately.  Otherwise it has to 
+immediately.  Otherwise it has to
 compute the new value, add it to the dictionary, and return it.
 
 \begin{ex}
@@ -9934,7 +9934,7 @@ persist from one function call to the next.
 
 \index{flag}
 
-It is common to use global variables for {\bf flags}; that is, 
+It is common to use global variables for {\bf flags}; that is,
 boolean variables that indicate (``flag'') whether a condition
 is true.  For example, some programs use
 a flag named {\tt verbose} to control the level of detail in the
@@ -9983,7 +9983,7 @@ To reassign a global variable inside a function you have to
 been_called = False
 
 def example2():
-    global been_called 
+    global been_called
     been_called = True
 \end{verbatim}
 \afterverb
@@ -10228,14 +10228,14 @@ one or more keys that map to it.
 
 \item[call graph:] A diagram that shows every frame created during
 the execution of a program, with an arrow from each caller to
-each callee. 
+each callee.
 \index{call graph}
 \index{diagram!call graph}
 
 \item[histogram:] A set of counters.
 \index{histogram}
 
-\item[memo:] A computed value stored to avoid unnecessary future 
+\item[memo:] A computed value stored to avoid unnecessary future
 computation.
 \index{memo}
 
@@ -10507,7 +10507,7 @@ This solution is cumbersome; {\bf tuple assignment} is more elegant:
 \afterverb
 %
 The left side is a tuple of variables; the right side is a tuple of
-expressions.  Each value is assigned to its respective variable.  
+expressions.  Each value is assigned to its respective variable.
 All the expressions on the right side are evaluated before any
 of the assignments.
 
@@ -10779,7 +10779,7 @@ for letter, number in t:
 \afterverb
 %
 Each time through the loop, Python selects the next tuple in
-the list and assigns the elements to {\tt letter} and 
+the list and assigns the elements to {\tt letter} and
 {\tt number}.  The output of this loop is:
 
 \index{loop}
@@ -10998,11 +10998,11 @@ True
 \end{verbatim}
 \afterverb
 %
-The {\tt sort} function works the same way.  It sorts 
+The {\tt sort} function works the same way.  It sorts
 primarily by first element, but in the case of a tie, it sorts
-by second element, and so on.  
+by second element, and so on.
 
-This feature lends itself to a pattern called {\bf DSU} for 
+This feature lends itself to a pattern called {\bf DSU} for
 
 \begin{description}
 
@@ -11198,7 +11198,7 @@ And here's a dictionary with 3 items that map integers to strings.
 
 \beforeverb
 \begin{verbatim}
->>> d = dict(lt) 
+>>> d = dict(lt)
 >>> print structshape(d)
 dict of 3 int->str
 \end{verbatim}
@@ -11439,7 +11439,7 @@ Also, you might consider using the string methods {\tt strip},
 
 \index{Project Gutenberg}
 
-Go to Project Gutenberg (\url{gutenberg.net}) and download 
+Go to Project Gutenberg (\url{gutenberg.net}) and download
 your favorite out-of-copyright book in plain text format.
 
 \index{plain text}
@@ -11563,7 +11563,7 @@ Gaussian, exponential, gamma, and a few more.
 \index{histogram!random choice}
 
 Write a function named \verb"choose_from_hist" that takes
-a histogram as defined in Section~\ref{histogram} and returns a 
+a histogram as defined in Section~\ref{histogram} and returns a
 random value from the histogram, chosen with probability
 in proportion to frequency.  For example, for this histogram:
 
@@ -11601,7 +11601,7 @@ def process_file(filename):
 
 def process_line(line, h):
     line = line.replace('-', ' ')
-    
+
     for word in line.split():
         word = word.strip(string.punctuation + string.whitespace)
         word = word.lower()
@@ -11826,7 +11826,7 @@ Here are some of the results from {\em Emma}:
 \beforeverb
 \begin{verbatim}
 The words in the book that aren't in the word list are:
- rencontre jane's blanche woodhouses disingenuousness 
+ rencontre jane's blanche woodhouses disingenuousness
 friend's venice apartment ...
 \end{verbatim}
 \afterverb
@@ -11892,7 +11892,7 @@ An alternative is:
 \item Build a list that contains the cumulative sum of the word
   frequencies (see Exercise~\ref{cumulative}).  The last item
   in this list is the total number of words in the book, $n$.
-  
+
 \item Choose a random number from 1 to $n$.  Use a bisection search
   (See Exercise~\ref{bisection}) to find the index where the random
   number would be inserted in the cumulative sum.
@@ -12067,7 +12067,7 @@ def shift(prefix, word):
 \end{verbatim}
 \afterverb
 %
-{\tt shift} takes a tuple of words, {\tt prefix}, and a string, 
+{\tt shift} takes a tuple of words, {\tt prefix}, and a string,
 {\tt word}, and forms a new tuple that has all the words
 in {\tt prefix} except the first, and {\tt word} added to
 the end.
@@ -12216,7 +12216,7 @@ argument is provided.
 
 \item[benchmarking:] The process of choosing between data structures
 by implementing alternatives and testing them on a sample of the
-possible inputs.  
+possible inputs.
 \index{benchmarking}
 
 \end{description}
@@ -12464,7 +12464,7 @@ can read more about it at
 % \afterverb
 % %
 % The result takes up eight spaces with two
-% digits after the decimal point.  
+% digits after the decimal point.
 
 
 \section{Filenames and paths}
@@ -12477,7 +12477,7 @@ can read more about it at
 
 Files are organized into {\bf directories} (also called ``folders'').
 Every running program has a ``current directory,'' which is the
-default directory for most operations.  
+default directory for most operations.
 For example, when you open a file for reading, Python looks for it in the
 current directory.
 
@@ -12586,7 +12586,7 @@ def walk(dir):
 \afterverb
 %
 {\tt os.path.join} takes a directory and a file name and joins
-them into a complete path.  
+them into a complete path.
 
 \begin{ex}
 Modify {\tt walk} so that instead of printing the names of
@@ -12656,7 +12656,7 @@ syntax is similar to an {\tt if} statement:
 
 \beforeverb
 \begin{verbatim}
-try:    
+try:
     fin = open('bad_file')
     for line in fin:
         print line
@@ -12827,7 +12827,7 @@ as copying the object.
 
 You can use {\tt pickle} to store non-strings in a database.
 In fact, this combination is so common that it has been
-encapsulated in a module called {\tt shelve}.  
+encapsulated in a module called {\tt shelve}.
 
 \index{shelve module}
 \index{module!shelve}
@@ -13031,7 +13031,7 @@ changed.
 \index{reload function}
 \index{function!reload}
 
-If you want to reload a module, you can use the built-in function 
+If you want to reload a module, you can use the built-in function
 {\tt reload}, but it can be tricky, so the safest thing to do is
 restart the interpreter and then import the module again.
 \end{ex}
@@ -13051,7 +13051,7 @@ tabs and newlines are normally invisible:
 \begin{verbatim}
 >>> s = '1 2\t 3\n 4'
 >>> print s
-1 2	 3
+1 2   3
  4
 \end{verbatim}
 \afterverb
@@ -13104,7 +13104,7 @@ the elements of the tuple formatted as specified by the format string.
 \index{operator!format}
 
 \item[format string:] A string, used with the format operator, that
-contains format sequences.  
+contains format sequences.
 \index{format string}
 
 \item[format sequence:] A sequence of characters in a format string,
@@ -13382,7 +13382,7 @@ Point, you call {\tt Point} as if it were a function.
 \afterverb
 %
 The return value is a reference to a Point object, which we
-assign to {\tt blank}.  
+assign to {\tt blank}.
 Creating a new object is called
 {\bf instantiation}, and the object is an {\bf instance} of
 the class.
@@ -13513,7 +13513,7 @@ either vertical or horizontal.
 
 \index{representation}
 
-There are at least two possibilities: 
+There are at least two possibilities:
 
 \begin{itemize}
 
@@ -13535,7 +13535,7 @@ Here is the class definition:
 \beforeverb
 \begin{verbatim}
 class Rectangle(object):
-    """represent a rectangle. 
+    """represent a rectangle.
        attributes: width, height, corner.
     """
 \end{verbatim}
@@ -13659,7 +13659,7 @@ Here is an example that demonstrates the effect:
 \afterverb
 %
 Inside the function, {\tt rect} is an
-alias for {\tt box}, so if the function modifies {\tt rect}, 
+alias for {\tt box}, so if the function modifies {\tt rect},
 {\tt box} changes.
 
 \begin{ex}
@@ -13770,7 +13770,7 @@ affect both!  This behavior is confusing and error-prone.
 \index{copy!deep}
 
 Fortunately, the {\tt copy} module contains a method named {\tt
-deepcopy} that copies not only the object but also 
+deepcopy} that copies not only the object but also
 the objects it refers to, and the objects {\em they} refer to,
 and so on.
 You will not be surprised to learn that this operation is
@@ -13902,7 +13902,7 @@ attributes, and the values of the attributes.
 \index{module!World}
 
 {\tt World.py}, which is part of Swampy (see Chapter~\ref{turtlechap}),
-contains a class definition for a user-defined type called 
+contains a class definition for a user-defined type called
 {\tt World}.  You can import it like this:
 
 \beforeverb
@@ -13927,7 +13927,7 @@ world.mainloop()
 
 A window should appear with a title bar and an empty square.
 We will use this window to draw Points,
-Rectangles and other shapes.  
+Rectangles and other shapes.
 Add the following lines before calling
 \verb"mainloop" and run the program again.
 
@@ -13966,7 +13966,7 @@ canvas.circle([-25,0], 70, outline=None, fill='red')
 The first parameter is the coordinate pair for the center of the
 circle; the second parameter is the radius.
 
-If you add this line to the program, 
+If you add this line to the program,
 the result should resemble the national flag of Bangladesh
 (see \url{wikipedia.org/wiki/Gallery_of_sovereign-state_flags}).
 
@@ -14060,7 +14060,7 @@ The state diagram for the {\tt Time} object looks like this:
 
 \begin{ex}
 \label{printtime}
-Write a function called \verb"print_time" that takes a 
+Write a function called \verb"print_time" that takes a
 Time object and prints it in the form {\tt hour:minute:second}.
 Hint: the format sequence \verb"'%.2d'" prints an integer using
 at least two digits, including a leading zero if necessary.
@@ -14107,7 +14107,7 @@ The function creates a new {\tt Time} object, initializes its
 attributes, and returns a reference to the new object.  This is called
 a {\bf pure function} because it does not modify any of the objects
 passed to it as arguments and it has no effect,
-like displaying a value or getting user input, 
+like displaying a value or getting user input,
 other than returning a value.
 
 \index{pure function}
@@ -14211,7 +14211,7 @@ with the special cases we saw before.
 \index{special case}
 
 Is this function correct?  What happens if the parameter {\tt seconds}
-is much greater than sixty?  
+is much greater than sixty?
 
 In that case, it is not enough to carry
 once; we have to keep doing it until {\tt time.second} is less than sixty.
@@ -14282,7 +14282,7 @@ column to the next.
 
 This observation suggests another approach to the whole problem---we
 can convert Time objects to integers and take advantage of the fact
-that the computer knows how to do integer arithmetic.  
+that the computer knows how to do integer arithmetic.
 
 Here is a function that converts Times to integers:
 
@@ -14318,7 +14318,7 @@ check that \verb"time_to_int(int_to_time(x)) == x" for many values of
 
 \index{consistency check}
 
-Once you are convinced they are correct, you can use them to 
+Once you are convinced they are correct, you can use them to
 rewrite \verb"add_time":
 
 \beforeverb
@@ -14363,7 +14363,7 @@ for error).
 \index{debugging}
 
 A Time object is well-formed if the values of {\tt minutes} and {\tt
-seconds} are between 0 and 60 (including 0 but not 60) and if 
+seconds} are between 0 and 60 (including 0 but not 60) and if
 {\tt hours} is positive.  {\tt hours} and {\tt minutes} should be
 integral values, but we might allow {\tt seconds} to have a
 fraction part.
@@ -14597,7 +14597,7 @@ you will be able to choose the best form for whatever you are doing.
 \index{object!printing}
 
 In Chapter~\ref{time}, we defined a class named
-{\tt Time} and in Exercise~\ref{printtime}, you 
+{\tt Time} and in Exercise~\ref{printtime}, you
 wrote a function named \verb"print_time":
 
 \beforeverb
@@ -14821,7 +14821,7 @@ like English: ``end is after start?''
 \index{method!init}
 
 The init method (short for ``initialization'') is
-a special method that gets invoked when an object is instantiated.  
+a special method that gets invoked when an object is instantiated.
 Its full name is \verb"__init__" (two underscore characters,
 followed by {\tt init}, and then two more underscores).  An
 init method for the {\tt Time} class might look like this:
@@ -14934,8 +14934,8 @@ When you {\tt print} an object, Python invokes the {\tt str} method:
 \end{verbatim}
 \afterverb
 %
-When I write a new class, I almost always start by writing 
-\verb"__init__", which makes it easier to instantiate objects, and 
+When I write a new class, I almost always start by writing
+\verb"__init__", which makes it easier to instantiate objects, and
 \verb"__str__", which is useful for debugging.
 
 
@@ -14980,19 +14980,19 @@ And here is how you could use it:
 \afterverb
 %
 When you apply the {\tt +} operator to Time objects, Python invokes
-\verb"__add__".  When you print the result, Python invokes 
+\verb"__add__".  When you print the result, Python invokes
 \verb"__str__".  So there is quite a lot happening behind the scenes!
 
 \index{operator overloading}
 
 Changing the behavior of an operator so that it works with
 user-defined types is called {\bf operator overloading}.  For every
-operator in Python there is a corresponding special method, like 
+operator in Python there is a corresponding special method, like
 \verb"__add__".  For more details, see
 \url{docs.python.org/ref/specialnames.html}.
 
 \begin{ex}
-Write an {\tt add} method for the Point class.  
+Write an {\tt add} method for the Point class.
 \end{ex}
 
 
@@ -15098,7 +15098,7 @@ And here's how it's used:
 
 \begin{ex}
 Write an {\tt add} method for Points that works with either a
-Point object or a tuple:  
+Point object or a tuple:
 
 \begin{itemize}
 
@@ -15108,7 +15108,7 @@ operands, and likewise for the $y$ coordinates.
 
 \item If the second operand is a tuple, the method should add the
 first element of the tuple to the $x$ coordinate and the second
-element to the $y$ coordinate, and return a new Point with the result. 
+element to the $y$ coordinate, and return a new Point with the result.
 
 \end{itemize}
 
@@ -15175,7 +15175,7 @@ with {\tt sum}:
 \end{verbatim}
 \afterverb
 %
-In general, if all of the operations inside a function 
+In general, if all of the operations inside a function
 work with a given type, then the function works with that type.
 
 The best kind of polymorphism is the unintentional kind, where
@@ -15270,7 +15270,7 @@ of an operand and invokes different functions for different types.
 \index{type-based dispatch}
 
 \item[polymorphic:] Pertaining to a function that can work with more
-  than one type.  
+  than one type.
 
 \index{polymorphism}
 
@@ -15298,7 +15298,7 @@ methods:
 
 \begin{enumerate}
 
-\item An \verb"__init__" method that initializes an attribute named 
+\item An \verb"__init__" method that initializes an attribute named
 \verb"pouch_contents" to an empty list.
 
 \item A method named \verb"put_in_pouch" that takes an object
@@ -15309,7 +15309,7 @@ of the Kangaroo object and the contents of the pouch.
 
 \end{enumerate}
 %
-Test your code 
+Test your code
 by creating two {\tt Kangaroo} objects, assigning them to variables
 named {\tt kanga} and {\tt roo}, and then adding {\tt roo} to the
 contents of {\tt kanga}'s pouch.
@@ -15539,7 +15539,7 @@ attributes}:
 # inside class Card:
 
     suit_names = ['Clubs', 'Diamonds', 'Hearts', 'Spades']
-    rank_names = [None, 'Ace', '2', '3', '4', '5', '6', '7', 
+    rank_names = [None, 'Ace', '2', '3', '4', '5', '6', '7',
               '8', '9', '10', 'Jack', 'Queen', 'King']
 
     def __str__(self):
@@ -15550,7 +15550,7 @@ attributes}:
 %
 Variables like \verb"suit_names" and \verb"rank_names", which are
 defined inside a class but outside of any method, are called
-class attributes because they are associated with the class object 
+class attributes because they are associated with the class object
 {\tt Card}.
 
 \index{instance attribute}
@@ -15621,7 +15621,7 @@ that compare
 values and determine when one is greater than, less than, or equal to
 another.  For user-defined types, we can override the behavior of
 the built-in operators by providing a method named
-\verb"__cmp__".  
+\verb"__cmp__".
 
 \verb"__cmp__" takes two parameters, {\tt self} and {\tt other},
 and returns a positive number if the first object is greater, a
@@ -15661,7 +15661,7 @@ With that decided, we can write \verb"__cmp__":
         if self.rank < other.rank: return -1
 
         # ranks are the same... it's a tie
-        return 0    
+        return 0
 \end{verbatim}
 \afterverb
 %
@@ -15863,7 +15863,7 @@ using the function {\tt shuffle} from the {\tt random} module:
 \beforeverb
 \begin{verbatim}
 # inside class Deck:
-            
+
     def shuffle(self):
         random.shuffle(self.cards)
 \end{verbatim}
@@ -15914,7 +15914,7 @@ might compare two hands to see which one wins.  In bridge, we might
 compute a score for a hand in order to make a bid.
 
 This relationship between classes---similar, but different---lends
-itself to inheritance.  
+itself to inheritance.
 
 The definition of a child class is like other class definitions,
 but the name of the parent class appears in parentheses:
@@ -16026,7 +16026,7 @@ On the other hand, inheritance can make programs difficult to read.
 When a method is invoked, it is sometimes not clear where to find its
 definition.  The relevant code may be scattered among several modules.
 Also, many of the things that can be done using inheritance can be
-done as well or better without it.  
+done as well or better without it.
 
 
 \section{Class diagrams}
@@ -16086,7 +16086,7 @@ objects.
 
 \index{multiplicity (in class diagram)}
 
-The star ({\tt *}) near the arrow head is a 
+The star ({\tt *}) near the arrow head is a
 {\bf multiplicity}; it indicates how many Cards a Deck has.
 A multiplicity can be a simple number, like {\tt 52}, a range,
 like {\tt 5..7} or a star, which indicates that a Deck can
@@ -16117,7 +16117,7 @@ You would like it to work with all kinds of Hands, like
 PokerHands, BridgeHands, etc.  If you invoke a method like
 {\tt shuffle}, you might get the one defined in {\tt Deck},
 but if any of the subclasses override this method, you'll
-get that version instead.  
+get that version instead.
 
 \index{flow of execution}
 
@@ -16342,7 +16342,7 @@ The {\tt Wobbler} class inherits from {\tt Turtle}, which means
 that the {\tt Turtle} methods {\tt lt}, {\tt rt}, {\tt fd}
 and {\tt bk} work on Wobblers.
 
-The {\tt step} method gets invoked by TurtleWorld.  It invokes 
+The {\tt step} method gets invoked by TurtleWorld.  It invokes
 {\tt steer}, which turns the Turtle in the desired direction,
 {\tt wobble}, which makes a random turn in proportion to the Turtle's
 clumsiness, and {\tt move}, which moves forward a few pixels,
@@ -16563,7 +16563,7 @@ after you call {\tt bu} to create the button, the flow of execution
 This kind of flow is characteristic of {\bf event-driven programming}.
 User actions, like button presses and key strokes, are called {\bf
 events}.  In event-driven programming, the flow of execution is
-determined by user actions rather than by the programmer.  
+determined by user actions rather than by the programmer.
 
 The challenge of event-driven programming is to construct a set of
 widgets and callbacks that work correctly (or at least generate
@@ -16599,7 +16599,7 @@ canvas = g.ca(width=500, height=500)
 \afterverb
 %
 {\tt width} and {\tt height} are the dimensions of the canvas
-in pixels.  
+in pixels.
 
 \index{config method}
 \index{method!config}
@@ -16623,7 +16623,7 @@ provide at least:
 \beforeverb
 \begin{verbatim}
 white   black
-red     green    blue   
+red     green    blue
 cyan    yellow   magenta
 \end{verbatim}
 \afterverb
@@ -16688,7 +16688,7 @@ and the upper right corner at $(200, 100)$:
 
 \beforeverb
 \begin{verbatim}
-canvas.rectangle([[0, 0], [200, 100]], 
+canvas.rectangle([[0, 0], [200, 100]],
                  fill='blue', outline='orange', width=10)
 \end{verbatim}
 \afterverb
@@ -16933,7 +16933,7 @@ a Button and an Entry:
 \afterverb
 %
 The first argument to {\tt row} is a list of weights that
-determines how extra space is allocated between widgets.  
+determines how extra space is allocated between widgets.
 The list {\tt [0,1]} means that all extra space is allocated
 to the second widget, which is the Entry.  If you run this code
 and resize the window, you will see that the Entry grows and
@@ -16954,7 +16954,7 @@ it goes on top of the stack and becomes the current Frame.
 a Frame, it gets popped off the stack and the previous Frame on the
 stack becomes the current Frame.
 
-\end{itemize} 
+\end{itemize}
 
 The method \verb"run_file" reads the contents of the Entry,
 uses it as a filename, reads the contents
@@ -17288,7 +17288,7 @@ g.bu(text='This is wrong!', command=the_callback())
 %
 If you run this code, you will see that it calls \verb"the_callback"
 immediately, and {\em then} creates the button.  When you press the
-button, it does nothing because the return value from 
+button, it does nothing because the return value from
 \verb"the_callback" is {\tt None}.
 Usually you do not want to invoke a callback while you are
 setting up the GUI; it should only be invoked later in response to
@@ -17310,7 +17310,7 @@ there's no problem.  But what if the user changes the color of
 a circle that doesn't exist yet?  Or creates more than one circle?
 
 As the number of widgets grows, it is increasingly difficult to
-imagine all possible sequences of events.  One way to manage this 
+imagine all possible sequences of events.  One way to manage this
 complexity is to encapsulate the state of the system in an object
 and then consider:
 
@@ -17351,7 +17351,7 @@ of user events!
 \index{GUI}
 
 \item[widget:] One of the elements that makes up a GUI, including
-buttons, menus, text entry fields, etc. 
+buttons, menus, text entry fields, etc.
 \index{widget}
 
 \item[option:] A value that controls the appearance or function of
@@ -17432,7 +17432,7 @@ g.bu(image=photo)
 \end{verbatim}
 \afterverb
 %
-PhotoImage can only handle a few image formats, like GIF and PPM, 
+PhotoImage can only handle a few image formats, like GIF and PPM,
 but we can use the Python Imaging Library (PIL) to read other
 files.
 
@@ -17470,7 +17470,7 @@ g.la(image=photo2)
 
 \item Download \verb"image_demo.py", \verb"danger.gif" and \verb"allen.png"
 from \url{thinkpython.com/code}.  Run \verb"image_demo.py".  You
-might have to install {\tt PIL} and {\tt ImageTk}.  
+might have to install {\tt PIL} and {\tt ImageTk}.
 They are probably in your software repository,  but if not
 you can get them from \url{pythonware.com/products/pil/}.
 
