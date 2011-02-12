@@ -1140,8 +1140,7 @@ Hello, World!
 \end{verbatim}
 \afterverb
 %
-This is an example of a {\bf print statement}, which
-doesn't actually print anything on paper.  It displays a value on the
+This is an example of a {\bf {\tt puts}} statement.  It displays a value on the
 screen.  In this case, the result is the words
 
 \beforeverb
@@ -1153,12 +1152,12 @@ Hello, World!
 The quotation marks in the program mark the beginning and end
 of the text to be displayed; they don't appear in the result.
 
-You might have noticed that the result of a print statement is called ``nil''.
+You might have noticed that the result of {\tt puts} is called ``nil''.
 Don't worry about this for now. We will explore this later.
 
 \index{quotation mark}
-\index{print statement}
-\index{statement!print}
+\index{puts}
+\index{statement!puts}
 
 Some people judge the quality of a programming language by the
 simplicity of the ``Hello, World!'' program.  By this standard, Ruby
@@ -1319,10 +1318,9 @@ a program, analogous to a word in a natural language.
 \item[parse:]  To examine a program and analyze the syntactic structure.
 \index{parse}
 
-\item[print statement:]  An instruction that causes the Ruby
-interpreter to display a value on the screen.
-\index{print statement}
-\index{statement!print}
+\item[puts:]  An instruction that causes the Ruby interpreter to display a
+value on the screen.
+\index{puts}
 
 
 \end{description}
@@ -1384,7 +1382,7 @@ In Ruby, types are called {\bf classes}.
 We will explain how classes work in Chapter~\ref{classes}.
 \index{class}
 
-The print statement also works for integers.
+{\tt puts} also works for integers.
 
 \beforeverb
 \begin{verbatim}
@@ -1540,22 +1538,6 @@ To display the value of a variable, just type its name into {\tt irb}:
 => 3.14159265358979
 \end{verbatim}
 \afterverb
-
-you can also use a print statement:
-
-\beforeverb
-\begin{verbatim}
->> puts message
-And now for something completely different
-=> nil
->> puts n
-17
-=> nil
->> puts pi
-3.14159265358979
-=> nil
-\end{verbatim}
-\afterverb
 %
 The class of a variable is the class of the value it refers to.
 
@@ -1593,7 +1575,7 @@ Other numbers seem to work, but the results are bizarre:
 \end{verbatim}
 \afterverb
 
-Can you figure out what is going on?  Hint: print the
+Can you figure out what is going on?  Hint: Use {\tt puts} with the
 values {\tt 01}, {\tt 010}, {\tt 0100} and {\tt 01000}.
 
 \index{octal}
@@ -1671,7 +1653,7 @@ is on this list.
 \section{Statements}
 
 A statement is a unit of code that the Ruby interpreter can
-execute.  We have seen two kinds of statements: print
+execute.  We have seen two kinds of statements: {\tt puts}
 and assignment.
 
 \index{statement}
@@ -1820,7 +1802,7 @@ x + 1
 %
 Now put the same statements into a script and run it.  What
 is the output?  Modify the script by transforming each
-expression into a print statement and then run it again.
+expression into a {\tt puts} statement and then run it again.
 \end{ex}
 
 
@@ -2061,8 +2043,9 @@ parts.
 \index{variable}
 
 \item[statement:]  A section of code that represents a command or action.  So
-far, the statements we have seen are assignments and print statements.
+far, the statements we have seen are assignments and {\tt puts} statements.
 \index{statement}
+\index{statement!puts}
 
 \item[assignment:]  A statement that assigns a value to a variable.
 \index{assignment}
