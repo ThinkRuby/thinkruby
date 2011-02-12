@@ -795,16 +795,14 @@ In {\tt irb}, you type Ruby programs and the interpreter prints the result:
 
 \beforeverb
 \begin{verbatim}
-ruby-1.9.2-p136 :001 > 1 + 1
- => 2 
+>> 1 + 1
+=> 2 
 \end{verbatim}
 \afterverb
 %
-{\tt ruby-1.9.2-p136 :001 >}, is the {\bf prompt} the interpreter uses to
-indicate that it is ready. The first part shows the version of Ruby that you
-are using. Don't worry if your version doesn't match ours exactly. The second
-part keeps a count of the number of lines you have typed. For the rest of the
-book, we will just be using a single {/tt >} to indicate an {/tt irb} prompt.
+{\tt >>}, is the {\bf prompt} the interpreter uses to
+indicate that it is ready. Don't worry if your prompt doesn't match ours
+exactly.
 
 If you type {\tt 1 + 1}, the interpreter replies {\tt 2}. The {\tt =>} symbol
 indicates that the interpreter is showing you the result.
@@ -1136,17 +1134,15 @@ words, ``Hello, World!''  In Ruby, it looks like this:
 
 \beforeverb
 \begin{verbatim}
-> puts 'Hello, World!'
+>> puts 'Hello, World!'
 Hello, World!
- => nil
+=> nil
 \end{verbatim}
 \afterverb
 %
 This is an example of a {\bf print statement}, which
 doesn't actually print anything on paper.  It displays a value on the
 screen.  In this case, the result is the words
-
-\index{Python 3.0}
 
 \beforeverb
 \begin{verbatim}
@@ -1381,20 +1377,20 @@ These values belong to different {\bf types}:
 so-called because it contains a ``string'' of letters.
 You (and the interpreter) can identify
 strings because they are enclosed in quotation marks.
+\index{type}
+\index{quotation mark}
 
 In Ruby, types are called {\bf classes}.
 We will explain how classes work in Chapter~\ref{classes}.
-
-\index{quotation mark}
 \index{class}
 
 The print statement also works for integers.
 
 \beforeverb
 \begin{verbatim}
-> puts 4
+>> puts 4
 4
- => nil
+=> nil
 \end{verbatim}
 \afterverb
 %
@@ -1402,35 +1398,22 @@ If you are not sure what type (class) a value has, the interpreter can tell you.
 
 \beforeverb
 \begin{verbatim}
-> "Hello, World!".class
- => String
-> 17.class
- => Fixnum
-> 12345678901234567890.class
- => Bignum
-> 7.5.class
- => Float
-
+>> "Hello, World!".class
+=> String
+>> 17.class
+=> Fixnum
 \end{verbatim}
 \afterverb
 %
 Not surprisingly, strings belong to the class {\tt String}.
+\index{String class}
+\index{class!String}
 
 Numbers work a little bit differently, based on the kind of number.
 
 The integer 17 belongs to the class {\tt Fixnum}. Fixnum is a
 type of integer. If you type a really large number, you might get a 
 {\tt Bignum} instead. Both of these are integer classes.
-
-Numbers with a decimal point belong to a class 
-called {\tt Float},
-because these numbers are represented in a
-format called {\bf floating-point}.
-
-\index{type}
-\index{class}
-\index{String class}
-\index{class!String}
 \index{Fixnum class}
 \index{class!Fixnum}
 \index{integer}
@@ -1438,13 +1421,25 @@ format called {\bf floating-point}.
 \index{Bignum class}
 \index{class!Bignum}
 \index{integer!Bignum}
+
+\beforeverb
+\begin{verbatim}
+>> 12345678901234567890.class
+=> Bignum
+\end{verbatim}
+\afterverb
+%
+Numbers with a decimal point belong to a class 
+called {\tt Float},
+because these numbers are represented in a
+format called {\bf floating-point}.
 \index{Float class}
 \index{class!Float}
 
 \beforeverb
 \begin{verbatim}
->>> type(3.2)
-<type 'float'>
+>> 3.2.class
+=> Float
 \end{verbatim}
 \afterverb
 %
@@ -1456,10 +1451,10 @@ strings.
 
 \beforeverb
 \begin{verbatim}
-> '17'.class
- => String 
-> '3.2'.class
- => String 
+>> '17'.class
+=> String 
+>> '3.2'.class
+=> String 
 \end{verbatim}
 \afterverb
 %
@@ -1471,11 +1466,11 @@ legal integer in Ruby, but it is legal:
 
 \beforeverb
 \begin{verbatim}
-> puts 1,000,000
+>> puts 1,000,000
 1
 0
 0
- => nil 
+=> nil 
 \end{verbatim}
 \afterverb
 %
