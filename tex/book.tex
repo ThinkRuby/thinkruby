@@ -2588,8 +2588,8 @@ user-defined method that takes an argument:
 \beforeverb
 \begin{verbatim}
 def print_twice(bruce)
-  print bruce
-  print bruce
+  puts bruce
+  puts bruce
 end
 \end{verbatim}
 \afterverb
@@ -2746,7 +2746,7 @@ The frames are arranged in a stack that indicates which method
 called which, and so on.  In this example, \verb"print_twice"
 was called by \verb"cat_twice", and \verb"cat_twice" was called by
 \verb"<main>", which is a special name for the topmost frame.  When
-you create a variable outside of any function, it belongs to
+you create a variable outside of any method, it belongs to
 \verb"<main>".
 
 Each parameter refers to the same value as its corresponding
@@ -2785,106 +2785,175 @@ order of the frames in the stack diagram.  The method that is
 currently running is at the top.
 
 
-\section{Fruitful functions and void functions}
+\section{Return values}
 
-\index{fruitful function}
-\index{void function}
-\index{function, fruitful}
-\index{function, void}
+\index{return value}
+\index{method, return value}
 
-Some of the functions we are using, such as the math functions, yield
-results; for lack of a better name, I call them {\bf fruitful
-  functions}.  Other functions, like \verb"print_twice", perform an
-action but don't return a value.  They are called {\bf void
-  functions}.
+Some of the methods we are using, such as the math methods, yield
+results.  Other methods, like \verb"print_twice", perform an
+action but don't return a useful value.
 
-When you call a fruitful function, you almost always
+When you call a method that returns a useful value, you almost always
 want to do something with the result; for example, you might
 assign it to a variable or use it as part of an expression:
 
 \beforeverb
 \begin{verbatim}
-x = math.cos(radians)
-golden = (math.sqrt(5) + 1) / 2
+x = Math.cos(radians)
+golden = (Math.sqrt(5) + 1) / 2
 \end{verbatim}
 \afterverb
 %
-When you call a function in interactive mode, Python displays
+When you call a method {\tt irb}, Ruby displays
 the result:
 
 \beforeverb
 \begin{verbatim}
->>> math.sqrt(5)
-2.2360679774997898
+>> Math.sqrt(5)
+2.23606797749979
 \end{verbatim}
 \afterverb
 %
-But in a script, if you call a fruitful function all by itself,
+But in a script, if you call a method all by itself,
 the return value is lost forever!
 
 \beforeverb
 \begin{verbatim}
-math.sqrt(5)
+Math.sqrt(5)
 \end{verbatim}
 \afterverb
 %
 This script computes the square root of 5, but since it doesn't store
 or display the result, it is not very useful.
 
-\index{interactive mode}
+\index{irb}
 \index{script mode}
 
-Void functions might display something on the screen or have some
-other effect, but they don't have a return value.  If you try to
-assign the result to a variable, you get a special value called
-{\tt None}.
+Some methods might display something on the screen or have some
+other effect, but they don't have a useful return value.  If you
+try to assign the result to a variable, you get a special value called
+{\tt nil}.
 
-\index{None special value}
-\index{special value!None}
-
-\beforeverb
-\begin{verbatim}
->>> result = print_twice('Bing')
-Bing
-Bing
->>> print result
-None
-\end{verbatim}
-\afterverb
-%
-The value {\tt None} is not the same as the string \verb"'None'".
-It is a special value that has its own type:
+\index{nil}
+\index{special value!nil}
 
 \beforeverb
 \begin{verbatim}
->>> print type(None)
-<type 'NoneType'>
+>> result = print_twice('Bing')
+Bing
+Bing
+=> nil
+>> puts result
+
+=> nil
 \end{verbatim}
 \afterverb
 %
-The functions we have written so far are all void.  We will start
-writing fruitful functions in a few chapters.
+The value {\tt nil} is not the same as the string \verb"'nil'".
+It is a special value that has its own class:
+
+\beforeverb
+\begin{verbatim}
+>> puts nil.class
+NilClass
+=> nil
+\end{verbatim}
+\afterverb
+%
+Notice that when we call the {\tt puts} method, it has a return value of {\tt nil}.
+{\tt irb} always shows the return value following a {\tt =>} symbol.
+
+The methods we have written so far don't return anything useful.  We will start
+writing methods with useful return values in a few chapters.
+
+\section{Blocks}
+\index{method, blocks}
+
+A {\bf block} is a set of statements that you can pass into a method, just as
+if it were a parameter.  There are two ways to write a block. The first is to
+use {\tt do} and {\tt end}. For instance, to pass a block to the method named
+
+\beforeverb
+\begin{verbatim}
+do
+  x = Math::PI / 2
+  puts Math.sin(x)
+end
+\end{verbatim}
+\afterverb
+%
+For shorter blocks, you can also put a single statement between curly braces.
+Multiple statements can be separated by a semicolon.
+
+\beforeverb
+\begin{verbatim}
+{ x = 4; puts Math.sqrt(x) }
+\end{verbatim}
+\afterverb
+%
+Note that blocks cannot live on their own. They must be attached the end of
+a method call.  
+
+For example, the {\tt loop} method takes a block
+of code and run it repeatedly forever.
+
+\beforeverb
+\begin{verbatim}
+loop do
+  puts "Ruby"
+end
+\end{verbatim}
+\afterverb
+%
+Try running this program.  You will notice that it never ends!  Since you
+probably don't want to throw away your computer at this point, it is important
+to stop the program from running.  Simply press {\tt Ctrl-C} and the program
+will stop.
+
+\beforeverb
+\begin{verbatim}
+hello
+hello
+hello
+hello
+hello
+hello
+loop_hello.rb:2:in `write': Interrupt
+  from loop_hello.rb:2:in `puts'
+  from loop_hello.rb:2:in `puts'
+  from loop_hello.rb:2:in `block in <main>'
+  from loop_hello.rb:1:in `loop'
+  from loop_hello.rb:1:in `<main>'
+\end{verbatim}
+\afterverb
+%
+It will display an error message, but don't worry, it's just
+letting you know that the program ended in an unusual way.
+
+We will talk more about blocks more in a later chapter.
+[TODO: add link to later chapter]
 
 
-\section{Why functions?}
-\index{function, reasons for}
+\section{Why methods?}
+\index{method, reasons for}
 
 It may not be clear why it is worth the trouble to divide
-a program into functions.  There are several reasons:
+a program into methods.  There are several reasons:
 
 \begin{itemize}
 
-\item Creating a new function gives you an opportunity to name a group
+\item Creating a new method gives you an opportunity to name a group
 of statements, which makes your program easier to read and debug.
 
-\item Functions can make a program smaller by eliminating repetitive
+\item Methods can make a program smaller by eliminating repetitive
 code.  Later, if you make a change, you only have
 to make it in one place.
 
-\item Dividing a long program into functions allows you to debug the
+\item Dividing a long program into methods allows you to debug the
 parts one at a time and then assemble them into a working whole.
 
-\item Well-designed functions are often useful for many programs.
+\item Well-designed methods are often useful for many programs.
 Once you write and debug one, you can reuse it.
 
 \end{itemize}
@@ -2894,19 +2963,8 @@ Once you write and debug one, you can reuse it.
 \label{editor}
 \index{debugging}
 
-If you are using a text editor to write your scripts, you might
-run into problems with spaces and tabs.  The best way to avoid
-these problems is to use spaces exclusively (no tabs).  Most text
-editors that know about Python do this by default, but some
-don't.
-
-\index{whitespace}
-
-Tabs and spaces are usually invisible, which makes them
-hard to debug, so try to find an editor that manages indentation
-for you.
-
-Also, don't forget to save your program before you run it.  Some
+If you use a text editor to write your scripts,
+don't forget to save your program before you run it.  Some
 development environments do this automatically, but some don't.
 In that case the program you are looking at in the text editor
 is not the same as the program you are running.
@@ -2915,7 +2973,7 @@ Debugging can take a long time if you keep running the same,
 incorrect, program over and over!
 
 Make sure that the code you are looking at is the code you are running.
-If you're not sure, put something like \verb"print 'hello'" at the
+If you're not sure, put something like \verb"puts 'hello'" at the
 beginning of the program and run it again.  If you don't see
 \verb"hello", you're not running the right program!
 
@@ -2926,69 +2984,62 @@ beginning of the program and run it again.  If you don't see
 
 \begin{description}
 
-\item[function:] A named sequence of statements that performs some
-useful operation.  Functions may or may not take arguments and may or
-may not produce a result.
-\index{function}
+\item[method:] A named sequence of statements that performs some
+useful operation.  Methods may or may not take arguments and always
+return a value.
+\index{method}
 
-\item[function definition:]  A statement that creates a new function,
+\item[method definition:]  A statement that creates a new method,
 specifying its name, parameters, and the statements it executes.
-\index{function definition}
+\index{method definition}
 
-\item[function object:]  A value created by a function definition.
-The name of the function is a variable that refers to a function
+\item[method object:]  A value created by a method definition.
+The name of the method is a variable that refers to a method
 object.
-\index{function definition}
+\index{method definition}
 
-\item[header:] The first line of a function definition.
+\item[header:] The first line of a method definition.
 \index{header}
 
-\item[body:] The sequence of statements inside a function definition.
+\item[body:] The sequence of statements inside a method definition.
 \index{body}
 
-\item[parameter:] A name used inside a function to refer to the value
-passed as an argument.
+\item[parameter:] A name used inside a method to refer to the value
+passed in as an argument.
 \index{parameter}
 
-\item[function call:] A statement that executes a function. It
-consists of the function name followed by an argument list.
-\index{function call}
+\item[method call:] A statement that executes a method. It
+consists of the method name followed by an argument list.
+\index{method call}
 
-\item[argument:]  A value provided to a function when the function is called.
-This value is assigned to the corresponding parameter in the function.
+\item[argument:]  A value provided to a method when the method is called.
+This value is assigned to the corresponding parameter in the method.
 \index{argument}
 
-\item[local variable:]  A variable defined inside a function.  A local
-variable can only be used inside its function.
+\item[local variable:]  A variable defined inside a method.  A local
+variable can only be used inside its method.
 \index{local variable}
 
-\item[return value:]  The result of a function.  If a function call
-is used as an expression, the return value is the value of
-the expression.
+\item[return value:]  The result of a method.  If a method call
+is used as an expression, the value of the expression is the return
+value of the method call.
 \index{return value}
 
-\item[fruitful function:] A function that returns a value.
-\index{fruitful function}
-
-\item[void function:] A function that doesn't return a value.
-\index{void function}
-
-\item[module:] A file that contains a
-collection of related functions and other definitions.
+\item[module:] A collection of related methods and other definitions.
 \index{module}
 
-\item[import statement:] A statement that reads a module file and creates
-a module object.
-\index{import statement}
-\index{statement!import}
+\item[require statement:] A statement that reads a Ruby file and loads its
+code, which may include module objects.
+\index{require statement}
+\index{statement!require}
 
-\item[module object:] A value created by an {\tt import} statement
-that provides access to the values defined in a module.
+\item[module object:] A value, often loaded by a {\tt require} statement,
+that provides access to the values and methods defined within a module.
 \index{module}
 
-\item[dot notation:]  The syntax for calling a function in another
-module by specifying the module name followed by a dot (period) and
-the function name.
+\item[dot notation:]  The syntax for calling a method on an object (for
+example, a module object like {\tt Math}) by specifying the object name
+followed by a dot (period) and the method name.
 \index{dot notation}
 
 \item[composition:] Using an expression as part of a larger expression,
@@ -2999,16 +3050,16 @@ or a statement as part of a larger statement.
 a program run.
 \index{flow of execution}
 
-\item[stack diagram:]  A graphical representation of a stack of functions,
+\item[stack diagram:]  A graphical representation of a stack of methods,
 their variables, and the values they refer to.
 \index{stack diagram}
 
-\item[frame:]  A box in a stack diagram that represents a function call.
-It contains the local variables and parameters of the function.
-\index{function frame}
+\item[frame:]  A box in a stack diagram that represents a method call.
+It contains the local variables and parameters of the method.
+\index{method frame}
 \index{frame}
 
-\item[traceback:]  A list of the functions that are executing,
+\item[backtrace:]  A list of the methods that are executing,
 printed when an exception occurs.
 \index{traceback}
 
@@ -3020,21 +3071,25 @@ printed when an exception occurs.
 
 \begin{ex}
 
-\index{len function}
-\index{function!len}
+\index{length method}
+\index{method!len}
 
-Python provides a built-in function called {\tt len} that
-returns the length of a string, so the value of \verb"len('allen')" is 5.
+Ruby strings have a method called {\tt length} that returns the length of the
+string. So the value of {\tt \verb"Ruby".length} is 4.
 
-Write a function named \verb"right_justify" that takes a string
+Write a method named \verb"right_justify" that takes a string
 named {\tt s} as a parameter and prints the string with enough
 leading spaces so that the last letter of the string is in column 70
 of the display.
 
+You can use the {\tt print} method instead of {\tt puts} to keep Ruby from
+going to the next line after each time is method is called.
+
 \beforeverb
 \begin{verbatim}
->>> right_justify('allen')
-                                                                 allen
+>> right_justify('Ruby')
+                                                                  Ruby
+=> nil
 \end{verbatim}
 \afterverb
 
@@ -3042,30 +3097,52 @@ of the display.
 
 
 \begin{ex}
-\index{function object}
-\index{object!function}
+\index{method name}
+\index{send method}
+\index{method, send}
+\index{method, name}
 
-A function object is a value you can assign to a variable
-or pass as an argument.  For example, \verb"do_twice" is a function
-that takes a function object as an argument and calls it twice:
+{\tt send} is a special method that looks at a string passed in as
+its first argument and calls the method of the same name. For example, to
+call the method named {\tt m } you would write:
 
 \beforeverb
 \begin{verbatim}
-def do_twice(f):
-    f()
-    f()
+send("m")
 \end{verbatim}
 \afterverb
 
-Here's an example that uses \verb"do_twice" to call a function
+
+You can also pass in arguments. To print the word ``hello'', you could write:
+
+\beforeverb
+\begin{verbatim}
+send("puts", "hello")
+\end{verbatim}
+\afterverb
+
+Here is a method named \verb"do_twice" that takes the name of a method
+as an argument and calls the method with that name twice:
+
+\beforeverb
+\begin{verbatim}
+def do_twice(m):
+  send(m)
+  send(m)
+end
+\end{verbatim}
+\afterverb
+
+Here's an example that uses \verb"do_twice" to call a method
 named \verb"print_spam" twice.
 
 \beforeverb
 \begin{verbatim}
-def print_spam():
-    print 'spam'
+def print_spam
+  puts "spam"
+end
 
-do_twice(print_spam)
+do_twice("print_spam")
 \end{verbatim}
 \afterverb
 
@@ -3074,7 +3151,7 @@ do_twice(print_spam)
 \item Type this example into a script and test it.
 
 \item Modify \verb"do_twice" so that it takes two arguments, a
-function object and a value, and calls the function twice,
+method name and a value, and calls the method twice,
 passing the value as an argument.
 
 \item Write a more general version of \verb"print_spam", called
@@ -3084,15 +3161,15 @@ it twice.
 \item Use the modified version of \verb"do_twice" to call
 \verb"print_twice" twice, passing \verb"'spam'" as an argument.
 
-\item Define a new function called
-\verb"do_four" that takes a function object and a value
-and calls the function four times, passing the value
+\item Define a new method called
+\verb"do_four" that takes a method name and a value
+and calls the method four times, passing the value
 as a parameter.  There should be only
-two statements in the body of this function, not four.
+two statements in the body of this method, not four.
 
 \end{enumerate}
 
-You can see my solution at \url{thinkpython.com/code/do_four.py}.
+You can see our solution at \url{thinkruby.org/code/do_four.rb}.
 
 \end{ex}
 
@@ -3108,8 +3185,7 @@ far.
 
 \begin{enumerate}
 
-\item Write a function that draws a grid like the
-  following:
+\item Write a method that draws a grid like the following:
 
 \beforeverb
 \begin{verbatim}
@@ -3136,27 +3212,27 @@ print '+', '-'
 \end{verbatim}
 \afterverb
 %
-If the sequence ends with a comma, Python leaves the line unfinished,
-so the value printed next appears on the same line.
+When you call {\tt print}, Ruby leaves the line unfinished,
+so the next value printed appears on the same line.
 
 \beforeverb
 \begin{verbatim}
-print '+',
+print '+'
 print '-'
 \end{verbatim}
 \afterverb
 %
 The output of these statements is \verb"'+ -'".
 
-A {\tt print} statement all by itself ends the current line and
+A {\tt puts} statement all by itself ends the current line and
 goes to the next line.
 
-\item Use the previous function to draw a similar grid
+\item Use the previous method to draw a similar grid
 with four rows and four columns.
 
 \end{enumerate}
 
-You can see my solution at \url{thinkpython.com/code/grid.py}.
+You can see our solution at \url{thinkruby.org/code/grid.rb}.
 
 \end{ex}
 
