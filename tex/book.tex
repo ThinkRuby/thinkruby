@@ -3240,94 +3240,153 @@ You can see our solution at \url{thinkruby.org/code/grid.rb}.
 
 
 
-\chapter{Case study: interface design}
-\label{turtlechap}
+\chapter{Case study: web application design}
+\label{sinatraintrochap}
 
-\section{TurtleWorld}
-\index{TurtleWorld}
-\index{Swampy}
+\section{RubyGems}
+\index{RubyGems}
+\index{gem}
 
-To accompany this book, I have written a suite of modules called
-Swampy.  One of these modules is TurtleWorld, which provides
-a set of functions for drawing lines by steering
-turtles around the screen.
+{\bf RubyGems } is a system for sharing Ruby code over the Internet. Using a simple
+command, a RubyGems user can install {\bf gems}, which are collections
+of Ruby files that you can include into any Ruby project.
 
-You can download Swampy from \url{thinkpython.com/swampy};
-follow the instructions there to install Swampy on your system.
+There are gems that do many different things. For example, you can use gems
+to build a website, to manipulate images, to create music, and many other
+things.
 
-Move into the directory that contains {\tt TurtleWorld.py},
-create a file named {\tt polygon.py} and type in the following
-code:
+If you're able to run Ruby, it's likely that you already have RubyGems
+installed. To find out, type {\tt gem } into your command line (not in 
+{\tt irb}). If it is installed, you will see a set of help messages. If you
+see a message such as ``command not found'', then read Appendix TODO.
 
-\beforeverb
-\begin{verbatim}
-from TurtleWorld import *
+\section{Website}
+\index{website}
+\index{web, web application}
 
-world = TurtleWorld()
-bob = Turtle()
-print bob
+In this chapter, we will create a small website. You will be able to visit it
+using any web browser. Since it is running on your computer directly, other
+people won't be able to see it. Later, we will show you how to make your
+website publicly available.
 
-wait_for_user()
-\end{verbatim}
-\afterverb
-%
-The first line is a variation of the {\tt import} statement we saw before;
-instead of creating a module object, it imports the functions
-from the module directly, so you can access them without using dot
-notation.
+\section{Sinatra}
+\index{Sinatra}
 
-\index{import statement}
-\index{statement!import}
-
-The next lines create a TurtleWorld assigned to {\tt world} and
-a Turtle assigned to {\tt bob}.  Printing {\tt bob} yields something
-like:
+To make this website application, or ``web app'', we will use a RubyGem named
+{\bf Sinatra}. To install Sinatra, use the {\tt gem} command:
 
 \beforeverb
 \begin{verbatim}
-<TurtleWorld.Turtle instance at 0xb7bfbf4c>
+$ gem install sinatra
+Successfully installed sinatra-1.2.3
+1 gem installed
+Installing ri documentation for sinatra-1.2.3...
+Installing RDoc documentation for sinatra-1.2.3...
 \end{verbatim}
 \afterverb
 %
-This means that {\tt bob} refers to
-an {\bf instance} of a Turtle
-as defined in module {\tt TurtleWorld}.  In this context,
-``instance'' means a member of a set;
-this Turtle is one of the set of possible Turtles.
-
-\index{instance}
-
-\verb"wait_for_user" tells TurtleWorld to wait for the user
-to do something, although in this case there's not much for
-the user to do except close the window.
-
-TurtleWorld provides several
-turtle-steering functions: {\tt fd} and {\tt bk} for
-forward and backward, and {\tt lt} and {\tt rt} for left and
-right turns.  Also, each Turtle is holding a pen, which is
-either down or up; if the pen is down, the Turtle leaves
-a trail when it moves.  The functions {\tt pu} and {\tt pd}
-stand for ``pen up'' and ``pen down.''
-
-To draw a right angle, add these lines to the program
-(after creating {\tt bob} and before calling \verb"wait_for_user"):
+Don't worry if the version of Sinatra that you install doesn't match ours.
+Once you have Sinatra installed, we can use it in a new program by using the
+{\tt require} statement. Open up a new file and add the following lines:
 
 \beforeverb
 \begin{verbatim}
-fd(bob, 100)
-lt(bob)
-fd(bob, 100)
+require "sinatra"
+
+get "/" do
+  "Hello, world!"
+end
 \end{verbatim}
 \afterverb
 %
-The first line tells {\tt bob} to take 100 steps
-forward.  The second line tells him to turn left.
+\index{require statement}
+\index{statement!require}
 
-When you run this program, you should see {\tt bob} move east and then
-south, leaving two line segments behind.
+Now try running your file. If everything loaded correctly, you should see:
 
-Now modify the program to draw a square.  Don't go on until
-you've got it working!
+\beforeverb
+\begin{verbatim}
+$ ruby webapp.rb 
+== Sinatra/1.2.3 has taken the stage on 4567 for development with backup from WEBrick
+[2011-04-24 21:14:09] INFO  WEBrick 1.3.1
+[2011-04-24 21:14:09] INFO  ruby 1.9.2 (2011-02-18) [x86_64-darwin10.7.0]
+[2011-04-24 21:14:09] INFO  WEBrick::HTTPServer#start: pid=13564 port=4567
+\end{verbatim}
+\afterverb
+%
+Sinatra displays some information about what is going on. Notice that the 
+command is still running. This is because a web application
+stays running forever, waiting for a web browser to ask it for a web page.
+Like our {\tt loop} example in the last chapter, you can quit this program at
+any time by typing {\tt Ctrl-C}.
+
+\section{Servers and clients}
+\index{server}
+\index{client}
+\index{web!server}
+\index{web!browser}
+
+A program that waits for a connection from another program is called a
+{\bf server}. In this case, our program is a {\bf web server}. The program
+that connects to a server is called a {\bf client}. A {\bf web browser} is a
+client that connects to web servers and displays the web pages it receives in
+response.
+
+\section{Accessing our website}
+
+Now that we have the server running, we can visit our website in a web
+browser such as Firefox. In the output from our Sinatra program, we can see
+that Sinatra ``took the stage'' on ``4567''. Later on, we see some output
+that says ``port=4567''. What this means is that our web server is running on
+port 4567. You can run multiple web servers on the same computer, but they
+each must run on their own port.
+
+To tell your web browser to request the website on this port on your local
+machine, simply type {\tt http://localhost:4567/} into the location bar and
+press {\tt Enter}. (The location bar is the part where you enter things like
+www.thinkruby.org)
+
+If everything worked correctly, you should see ``Hello, world!'' printed out
+in your browser.
+
+\section{How Sinatra works}
+
+In our program, we called a method named {\tt get} and passed it the string
+{\tt "/"} followed by a block. The only line inside the block is the string
+{\tt "Hello, world!"}. Let's try adding another section with
+different strings to the end of the program:
+
+\beforeverb
+\begin{verbatim}
+require "sinatra"
+
+get "/" do
+  "Hello, world!"
+end
+
+get "/how_are_you" do
+  "I'm fine, thanks for asking."
+end
+\end{verbatim}
+\afterverb
+%
+Now let's run the program again. Make sure to quit the server if it is still
+running, by pressing {\tt Ctrl-C}. Then run the program again after you've
+saved it with the new code.
+
+In your web browser, go to {\tt http://localhost:4567/} again. You should
+still see ``Hello, world!''. If you click the reload button a few times, you
+should still see ``Hello, world!''.
+
+To run the other section of code that we just added, we will need to change
+the address slightly. {\tt http://localhost:4567/how\_are\_you} points to the
+new section of code. Sinatra looks at the address that comes in and uses part
+of it to figure out which block the result should come from.
+
+The {\tt http://localhost:4567} part of the address tells the browser which
+server to talk to, and the {\tt /how\_are\_you} part tells the browser which
+webpage it should ask the server for. This is true for all websites, just like
+the ones you access every day.
 
 %\newpage
 
