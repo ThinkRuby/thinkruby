@@ -3337,7 +3337,7 @@ response.
 Now that we have the server running, we can visit our website in a web
 browser such as Firefox. In the output from our Sinatra program, we can see
 that Sinatra ``took the stage'' on ``4567''. Later on, we see some output
-that says ``port=4567''. What this means is that our web server is running on
+that says {\tt port=4567}. What this means is that our web server is running on
 port 4567. You can run multiple web servers on the same computer, but they
 each must run on their own port.
 
@@ -3356,6 +3356,7 @@ In our program, we called a method named {\tt get} and passed it the string
 {\tt "Hello, world!"}. Let's try adding another section with
 different strings to the end of the program:
 
+\begin{mbox}
 \beforeverb
 \begin{verbatim}
 require "sinatra"
@@ -3364,114 +3365,102 @@ get "/" do
   "Hello, world!"
 end
 
-get "/how_are_you" do
+get "/how-are-you" do
   "I'm fine, thanks for asking."
 end
 \end{verbatim}
 \afterverb
+\end{mbox}
 %
 Now let's run the program again. Make sure to quit the server if it is still
 running, by pressing {\tt Ctrl-C}. Then run the program again after you've
 saved it with the new code.
 
-In your web browser, go to {\tt http://localhost:4567/} again. You should
+In your web browser, go to \url{http://localhost:4567/} again. You should
 still see ``Hello, world!''. If you click the reload button a few times, you
 should still see ``Hello, world!''.
 
 To run the other section of code that we just added, we will need to change
-the address slightly. {\tt http://localhost:4567/how\_are\_you} points to the
+the address slightly. \url{http://localhost:4567/how-are-you} points to the
 new section of code. Sinatra looks at the address that comes in and uses part
 of it to figure out which block the result should come from.
 
+These ``get'' sections are called {\tt routes}. A route is a made up of a
+string that matches a web address and a block that runs when that address is
+visited in a browser.
+
 The {\tt http://localhost:4567} part of the address tells the browser which
-server to talk to, and the {\tt /how\_are\_you} part tells the browser which
+server to talk to, and the {\tt /how-are-you} part tells the browser which
 webpage it should ask the server for. This is true for all websites, just like
 the ones you access every day.
 
-%\newpage
+The {\tt http} part of the address is called the {\bf protocol}. In this case,
+we are using the {\bf HTTP} protocol that powers the World Wide Web.
+The localhost part is called the {\bf hostname}, {\tt 4567} is the {\bf port}
+number, and the {\tt /how-are-you} part is called the {\bf path}. Together,
+these parts make up a Uniform Resource Locator, or {\bf URL}.
 
-\section{Simple repetition}
-\label{repetition}
-\index{repetition}
+\section{Generalization}
+\label{generalization}
+\index{generalization}
 
-Chances are you wrote something like this (leaving out the code
-that creates TurtleWorld and waits for the user):
+Our website is starting to get interesting! But wouldn't it be more fun if
+the page could say hello to us personally?
 
-\begin{verbatim}
-fd(bob, 100)
-lt(bob)
-
-fd(bob, 100)
-lt(bob)
-
-fd(bob, 100)
-lt(bob)
-
-fd(bob, 100)
-\end{verbatim}
-%
-We can do the same thing more concisely with a {\tt for} statement.
-Add this example to {\tt polygon.py} and run it again:
-
-\index{for loop}
-\index{loop!for}
-\index{statement!for}
+Add the following route to the program:
 
 \beforeverb
 \begin{verbatim}
-for i in range(4):
-    print 'Hello!'
+get "/hello/:name" do
+  "Hello, " + params[:name] + "!"
+end
 \end{verbatim}
 \afterverb
-%
-You should see something like this:
+
+Now restart the server and go to \url{http://localhost:4567/hello/Bob}.
+You should get the response ``Hello, Bob!''.
+
+So why not call the parameter {\tt bob}?  The idea is that {\tt params[:name]}
+can be any name, not just ``Bob''. Try changing the {\tt Bob} part to
+something else, like your first name.
+
+So how does this work? Notice that the string passed into the {\tt get} method
+ends with {\tt :name}. When part of the path starts with a colon, Sinatra
+makes it available as a special kind of parameter inside the block. In this
+case, we accessed the parameter by calling the {\tt params} method followed by
+{\tt [:name]}. Don't worry about the brackets for now, we will explain them
+later. All that you need to know is that calling {\tt params[:name]} returns a
+string containing that part of the URL as typed in the web browser.
+
+We also used the plus sign to ``add'' strings together. When you use the
+{\tt +} operator between two strings, it will {\tt concatenate} them together,
+which is just a fancy way of saying that they will be joined together into a
+single longer string. For example, {\tt "Ru" + "by"} gives the result
+{\tt "Ruby"}.
+
+So if your name is David and you visit {\tt /hello/David}\footnote{From now
+on, we're just going to write the path. You will still need to type the full
+URL, such as {\tt http://localhost:4567/hello/David}}, then
+{\tt params[:name]} will return {\tt "David"}. That means the web browser
+will display the result of adding the following strings:
 
 \beforeverb
 \begin{verbatim}
-Hello!
-Hello!
-Hello!
-Hello!
+"Hello, " + "David" + "!"
 \end{verbatim}
 \afterverb
-%
-This is the simplest use of the {\tt for} statement; we will see
-more later.  But that should be enough to let you rewrite your
-square-drawing program.  Don't go on until you do.
 
-%\newpage
+Thus, we see ``Hello, David!'' in the web browser.
 
-Here is a {\tt for} statement that draws a square:
-
-\beforeverb
-\begin{verbatim}
-for i in range(4):
-    fd(bob, 100)
-    lt(bob)
-\end{verbatim}
-\afterverb
-%
-The syntax of a {\tt for} statement is similar to a function
-definition.  It has a header that ends with a colon and an indented
-body.  The body can contain any number of statements.
-
-\index{loop}
-
-A {\tt for} statement is sometimes called a {\bf loop} because
-the flow of execution runs through the body and then loops back
-to the top.  In this case, it runs the body four times.
-
-This version is actually a little different from the previous
-square-drawing code because it makes another turn after
-drawing the last side of the square.  The extra turn takes a little
-more time, but it simplifies the code if we do the same thing
-every time through the loop.  This version also has the effect
-of leaving the turtle back in the starting position, facing in
-the starting direction.
+By adding a new parameter to our original example, we are using 
+{\bf generalization} to make our code more general. Our {\tt /hello} route
+could only say hello to the world. Our {\tt /hello/:name} route can say hello
+to anyone (or thing) that you can imagine. By planning a little bit upfront,
+we can save ourselves a lot of work by solving a problem more generally.
 
 \section{Exercises}
 
-The following is a series of exercises using TurtleWorld.  They
+The following is a series of exercises using Sinatra.  They
 are meant to be fun, but they have a point, too.  While you are
 working on them, think about what the point is.
 
@@ -3480,91 +3469,106 @@ don't look until you have finished (or at least tried).
 
 \begin{enumerate}
 
-\item Write a function called {\tt square} that takes a parameter
-named {\tt t}, which is a turtle.  It should use the turtle to draw
-a square.
+\item Write a route for ``followed by'', which takes paths like 
+{\tt /peanut/followed-by/butter} and displays ``peanut butter''. Be sure to
+include a space between the two words. Hint: you can have more than one
+parameter in a route, as long as they have different names.
 
-Write a function call that passes {\tt bob} as an argument to
-{\tt square}, and then run the program again.
+\item Write a route for ``plus'', which takes paths like {\tt /2/plus/3} and
+displays ``5''. Hint: look back to chapter \ref{methchap} and think about how
+a string can be turned into an integer.
 
-\item Add another parameter, named {\tt length}, to {\tt square}.
-Modify the body so length of the sides is {\tt length}, and then
-modify the function call to provide a second argument.  Run the
-program again.  Test your program with a range of values for {\tt
-length}.
+\item Write a method using {\tt def} named {\tt hi}. It should take a name
+as a parameter and return a string that says hi to that name. For example,
+{\tt hi("Gill")} should return {\tt "Hi, Gill!"}. Now write a route that takes
+paths like {\tt /hi/Gill} and calls the {\t hi} method to generate its result.
+You may not use plus signs inside the route block.
 
-\item The functions {\tt lt} and {\tt rt} make 90-degree turns by
-default, but you can provide a second argument that specifies the
-number of degrees.  For example, {\tt lt(bob, 45)} turns {\tt bob} 45
-degrees to the left.
+\item Write a route for ``twice'', which takes paths like
+{\tt /pizza/twice} and displays ``pizza pizza''. Now see if you can make
+the two words display on their own lines. Hint: Browsers treat the HTML tag
+``{\tt <br>}'' as a line break.
 
-Make a copy of {\tt square} and change the name to {\tt polygon}.  Add
-another parameter named {\tt n} and modify the body so it draws an
-n-sided regular polygon.  Hint: The exterior angles of an n-sided regular
-polygon are $360.0 / n$ degrees.
+\item Write a route for ``$n$ times'', which takes paths like
+{\tt /Beetlejuice/3/times} and displays ``Beetlejuice Beetlejuice
+Beetlejuice''. Hint: Try using the {\tt *} operator between a string and an
+integer in {\tt irb} until you figure out how it can help you. Also think
+about how you could use the {\tt +} operator to put spaces between the words.
+It's OK to have an extra space at the beginning or end of the line.
 
-\index{polygon function}
-\index{function!polygon}
-
-\item Write a function called {\tt circle} that takes a turtle, {\tt t},
-and radius, {\tt r}, as parameters and that draws an approximate circle
-by invoking {\tt polygon} with an appropriate length and number of
-sides.  Test your function with a range of values of {\tt r}.
-
-\index{circle function}
-\index{function!circle}
-
-Hint: figure out the circumference of the circle and make sure that
-{\tt length * n = circumference}.
-
-Another hint: if {\tt bob} is too slow for you, you can speed
-him up by changing {\tt bob.delay}, which is the time between moves,
-in seconds.  {\tt bob.delay = 0.01} ought to get him moving.
-
-\item Make a more general version of {\tt circle} called {\tt arc}
-that takes an additional parameter {\tt angle}, which determines
-what fraction of a circle to draw.  {\tt angle} is in units of
-degrees, so when {\tt angle=360}, {\tt arc} should draw a complete
-circle.
-
-\index{arc function}
-\index{function!arc}
+\item Write a repetitive greeting route. It takes paths like
+{\tt /hi/there/4/times} and displays ``Hi, there! Hi, there! Hi, there! Hi,
+there!''. You should use the {\tt hi} method from Exercise 3.
 
 \end{enumerate}
 
-\section{Encapsulation}
+\section{Parameters}
 
-The first exercise asks you to put your square-drawing code
-into a function definition and then call the function, passing
-the turtle as a parameter.  Here is a solution:
+A possible solution for the first example is:
 
 \beforeverb
 \begin{verbatim}
-def square(t):
-    for i in range(4):
-        fd(t, 100)
-        lt(t)
+get "/:first/followed-by/:second" do
+  params[:first] + " " + params[:second]
+end
+\end{verbatim}
+\afterverb
 
-square(bob)
+In this solution, we chose to use the names ``first'' and ``second'', but you
+could name them anything. By giving the parameters names, we make it easier to
+remember what they are for. In this example, we could have named them ``jim''
+and ``lightbulb'' instead, but that would have made the second line more
+confusing. Also, by naming them ``first'' and ``second'', we are much less
+likely to put them in backwards order by mistake.
+
+Sometimes parameters arrive in a format that is different than what we need.
+For example, in Sinatra, all parameters are strings, even if we wanted them to
+be integers.
+
+In the following solution for the second exercise, we use
+the {\tt Integer} method to convert the strings into integers:
+
+\beforeverb
+\begin{verbatim}
+get "/:x/plus/:y" do
+  Integer(params[:x]) + Integer(params[:y])
+end
+\end{verbatim}
+\afterverb
+
+It looks a lot like the first solution, but since the {\tt +} operator does
+different things for integers and strings, we had to change the type of the
+parameters from string to integer in order to get mathematical addition
+instead of concatenation.
+
+\section{Encapsulation}
+\index{encapsulation}
+
+The third exercise asks you to put some of your code into a method definition
+and then call the method, passing the name as a parameter.  Here is a
+solution:
+
+\beforeverb
+\begin{verbatim}
+def hi(name)
+  "Hi, " + name + "!"
+end
+
+get "/hi/:name" do
+  hi(params[:name])
+end
 \end{verbatim}
 \afterverb
 %
-The innermost statements, {\tt fd} and {\tt lt} are
-indented twice to show that they are inside the {\tt for} loop,
-which is inside the function definition.  The next line,
-{\tt square(bob)}, is flush with the left margin, so that is the
-end of both the {\tt for} loop and the function definition.
-
-Inside the function, {\tt t} refers to the same turtle {\tt bob}
-refers to, so {\tt lt(t)} has the same effect as {\tt lt(bob)}.
-So why not call the parameter {\tt bob}?  The idea is that {\tt t}
-can be any turtle, not just {\tt bob}, so you could create
-a second turtle and pass it as an argument to {\tt square}:
+Inside the method, {\tt name} refers to the same string {\tt params[:name]}
+refers to, so doing the string concatenation inside the method has the same
+effect as it would have if we wrote it inside the route block, like this:
 
 \beforeverb
 \begin{verbatim}
-ray = Turtle()
-square(ray)
+get "/hi/:name" do
+  "Hi, " + params[:name] + "!"
+end
 \end{verbatim}
 \afterverb
 %
@@ -3574,216 +3578,132 @@ attaches a name to the code, which serves as a kind of documentation.
 Another advantage is that if you re-use the code, it is more concise
 to call a function twice than to copy and paste the body!
 
-\index{encapsulation}
-
-
-\section{Generalization}
-
-The next step is to add a {\tt length} parameter to {\tt square}.
-Here is a solution:
-
-\beforeverb
-\begin{verbatim}
-def square(t, length):
-    for i in range(4):
-        fd(t, length)
-        lt(t)
-
-square(bob, 100)
-\end{verbatim}
-\afterverb
-%
-Adding a parameter to a function is called {\bf generalization}
-because it makes the function more general: in the previous
-version, the square is always the same size; in this version
-it can be any size.
-
-\index{generalization}
-
-The next step is also a generalization.  Instead of drawing
-squares, {\tt polygon} draws regular polygons with any number of
-sides.  Here is a solution:
-
-\beforeverb
-\begin{verbatim}
-def polygon(t, n, length):
-    angle = 360.0 / n
-    for i in range(n):
-        fd(t, length)
-        lt(t, angle)
-
-polygon(bob, 7, 70)
-\end{verbatim}
-\afterverb
-%
-This draws a 7-sided polygon with side length 70.  If you have
-more than a few numeric arguments, it is easy to forget what they
-are, or what order they should be in.  It is legal, and sometimes
-helpful, to include the names of the parameters in the argument
-list:
-
-\beforeverb
-\begin{verbatim}
-polygon(bob, n=7, length=70)
-\end{verbatim}
-\afterverb
-%
-These are called {\bf keyword arguments} because they include
-the parameter names as ``keywords'' (not to be confused with
-Python keywords like {\tt while} and {\tt def}).
-
-\index{keyword argument}
-\index{argument!keyword}
-
-This syntax makes the program more readable.  It is also a reminder
-about how arguments and parameters work: when you call a function, the
-arguments are assigned to the parameters.
-
-
 \section{Interface design}
-
-The next step is to write {\tt circle}, which takes a radius,
-{\tt r}, as a parameter.  Here is a simple solution that uses
-{\tt polygon} to draw a 50-sided polygon:
-
-\beforeverb
-\begin{verbatim}
-def circle(t, r):
-    circumference = 2 * math.pi * r
-    n = 50
-    length = circumference / n
-    polygon(t, n, length)
-\end{verbatim}
-\afterverb
-%
-The first line computes the circumference of a circle with radius
-{\tt r} using the formula $2 \pi r$.  Since we use {\tt math.pi}, we
-have to import {\tt math}.  By convention, {\tt import} statements
-are usually at the beginning of the script.
-
-{\tt n} is the number of line segments in our approximation of a circle,
-so {\tt length} is the length of each segment.  Thus, {\tt polygon}
-draws a 50-sides polygon that approximates a circle with radius {\tt r}.
-
-One limitation of this solution is that {\tt n} is a constant, which
-means that for very big circles, the line segments are too long, and
-for small circles, we waste time drawing very small segments.  One
-solution would be to generalize the function by taking {\tt n} as
-a parameter.  This would give the user (whoever calls {\tt circle})
-more control, but the interface would be less clean.
-
 \index{interface}
 
-The {\bf interface} of a function is a summary of how it is used: what
-are the parameters?  What does the function do?  And what is the return
+The {\bf interface} of a method is a summary of how it is used: what
+are the parameters?  What does the method do?  And what is the return
 value?  An interface is ``clean'' if it is ``as simple as
 possible, but not simpler. (Einstein)''
 
 \index{Einstein, Albert}
 
-In this example, {\tt r} belongs in the interface because it
-specifies the circle to be drawn.  {\tt n} is less appropriate
-because it pertains to the details of {\em how} the circle should
-be rendered.
+The interface of our {\tt hi} method is very simple. The only parameter is a
+name, and the return value is a string that says ``Hi'' to that name. The
+method says hi, which makes calling it like {\tt hi("everybody")} (or even
+{\tt hi "everybody"} since method calls don't require parentheses}
+) self-explanatory.
 
-Rather than clutter up the interface, it is better
-to choose an appropriate value of {\tt n}
-depending on {\tt circumference}:
+A solution for Exercise 5 is:
 
 \beforeverb
 \begin{verbatim}
-def circle(t, r):
-    circumference = 2 * math.pi * r
-    n = int(circumference / 3) + 1
-    length = circumference / n
-    polygon(t, n, length)
+get "/:word/:number/times" do
+  (params[:word] + " ") * Integer(params[:number])
+end
 \end{verbatim}
 \afterverb
 %
-Now the number of segments is (approximately) {\tt circumference/3},
-so the length of each segment is (approximately) 3, which is small
-enough that the circles look good, but big enough to be efficient,
-and appropriate for any size circle.
+Sinatra routes are similar to methods in a lot of ways. They also have an
+interface. In this case, the parameters are {\tt :word} and {\tt :number}, and
+the return value is that word repeated that number of times. You might image a
+method that does the same thing:
 
+\beforeverb
+\begin{verbatim}
+def repeat_a_word_n_times(word, n)
+  (word + " ") * n
+end
+\end{verbatim}
+\afterverb
+%
+One nice thing about a Sinatra route is that it allows us to mix up the order
+of parameters and words like ``times'' that identify which route should be
+used. You can think of ``times'' as a sort of name of the route, which serves
+to differentiate it from other routes.
+
+The order of the parts of the path also matters. Imagine a multiplication
+route defined for {\tt /:first/times/:second}. Even though both use the word
+``times'' as an identifier, Sinatra knows how to treat the paths
+{\tt /2/times/3} and {\tt /badger/2/times} differently.
+
+We designed these route identifiers so that they read nicely in the URL. We
+could have just as easily made the route read paths like "/times/badger/2",
+but that would be confusing for visitors to our website. These visitors are
+the {\bf users} of our program. Thus, the URL is serving as a sort of
+{\bf user interface}, or UI. Other types of UI choices include how a program
+or website looks visually, the sounds it makes, or even which keyboard
+shortcuts do which action.
 
 \section{Refactoring}
 \label{refactoring}
 \index{refactoring}
 
-When I wrote {\tt circle}, I was able to re-use {\tt polygon}
-because a many-sided polygon is a good approximation of a circle.
-But {\tt arc} is not as cooperative; we can't use {\tt polygon}
-or {\tt circle} to draw an arc.
-
-One alternative is to start with a copy
-of {\tt polygon} and transform it into {\tt arc}.  The result
-might look like this:
+If we wanted to, we could go back to our original ``hello'' routes from the
+beginning and write them using a {\tt hello} method, like we did for the
+``hi'' routes.
 
 \beforeverb
 \begin{verbatim}
-def arc(t, r, angle):
-    arc_length = 2 * math.pi * r * angle / 360
-    n = int(arc_length / 3) + 1
-    step_length = arc_length / n
-    step_angle = float(angle) / n
+  def hello(name)
+    "Hello, " + name + "!"
+  end
+  
+  get "/" do
+    hello("world")
+  end
 
-    for i in range(n):
-        fd(t, step_length)
-        lt(t, step_angle)
+  get "/hello/:name" do
+    hello(name)
+  end
 \end{verbatim}
 \afterverb
 %
-The second half of this function looks like {\tt polygon}, but we
-can't re-use {\tt polygon} without changing the interface.  We could
-generalize {\tt polygon} to take an angle as a third argument,
-but then {\tt polygon} would no longer be an appropriate name!
-Instead, let's call the more general function {\tt polyline}:
+Notice that in the ``Hello, world!'' route, we used our {\tt hello} method,
+but hardcoded the {\tt name} parameter to {\tt "world"}. There is nothing
+wrong with doing this! It keeps our code simpler, and thus easier to work
+with.
+
+You may have noticed that the bodies of the {\tt hello} and {\tt hi} methods
+are very similar. The only difference is the beginning of the first string.
+When an experienced programmer notices this sort of thing, he or she could
+choose to rewrite the code in question to reduce duplication.
+
+In this case, we could write a new method named {\tt greet} that holds the common behavior.
 
 \beforeverb
 \begin{verbatim}
-def polyline(t, n, length, angle):
-    for i in range(n):
-        fd(t, length)
-        lt(t, angle)
+def greet(greeting_word, name)
+  greeting_word + ", " + name + "!"
+end
 \end{verbatim}
 \afterverb
 %
-Now we can rewrite {\tt polygon} and {\tt arc} to use {\tt polyline}:
+Finally, we can rewrite the {\tt hi} and {\tt hello} methods so that
+they call {\tt greet}.
 
 \beforeverb
 \begin{verbatim}
-def polygon(t, n, length):
-    angle = 360.0 / n
-    polyline(t, n, length, angle)
+def hello(name)
+  greet("hello", name)
+end
 
-def arc(t, r, angle):
-    arc_length = 2 * math.pi * r * angle / 360
-    n = int(arc_length / 3) + 1
-    step_length = arc_length / n
-    step_angle = float(angle) / n
-    polyline(t, n, step_length, step_angle)
-\end{verbatim}
-\afterverb
-%
-Finally, we can rewrite {\tt circle} to use {\tt arc}:
-
-\beforeverb
-\begin{verbatim}
-def circle(t, r):
-    arc(t, r, 360)
+def hi(name)
+  greet("hi", name)
+end
 \end{verbatim}
 \afterverb
 %
 This process---rearranging a program to improve function
 interfaces and facilitate code re-use---is called {\bf refactoring}.
-In this case, we noticed that there was similar code in {\tt arc} and
-{\tt polygon}, so we ``factored it out'' into {\tt polyline}.
+In this case, we noticed that there was similar code in {\tt hi} and
+{\tt hello}, so we ``factored it out'' into {\tt greet}.
 
 \index{refactoring}
 
-If we had planned ahead, we might have written {\tt polyline} first
+If we had planned ahead, we might have written {\tt greet} first
 and avoided refactoring, but often you don't know enough at the
-beginning of a project to design all the interfaces.  Once you start
+beginning of a project to design all the method interfaces.  Once you start
 coding, you understand the problem better.  Sometimes refactoring is a
 sign that you have learned something.
 
@@ -3798,69 +3718,26 @@ generalization.''  The steps of this process are:
 
 \begin{enumerate}
 
-\item Start by writing a small program with no function definitions.
+\item Start by writing a small program with no method definitions.
 
-\item Once you get the program working, encapsulate it in a function
+\item Once you get the program working, encapsulate it in a method
 and give it a name.
 
-\item Generalize the function by adding appropriate parameters.
+\item Generalize the method by adding appropriate parameters.
 
-\item Repeat steps 1--3 until you have a set of working functions.
+\item Repeat steps 1--3 until you have a set of working methods.
 Copy and paste working code to avoid retyping (and re-debugging).
 
 \item Look for opportunities to improve the program by refactoring.
 For example, if you have similar code in several places, consider
-factoring it into an appropriately general function.
+factoring it into an appropriately general method.
 
 \end{enumerate}
 
 This process has some drawbacks---we will see alternatives later---but
 it can be useful if you don't know ahead of time how to divide the
-program into functions.  This approach lets you design as you go
+program into methods.  This approach lets you design as you go
 along.
-
-
-\section{docstring}
-\label{docstring}
-\index{docstring}
-
-A {\bf docstring} is a string at the beginning of a function that
-explains the interface (``doc'' is short for ``documentation'').  Here
-is an example:
-
-\beforeverb
-\begin{verbatim}
-def polyline(t, length, n, angle):
-    """Draw n line segments with the given length and
-    angle (in degrees) between them.  t is a turtle.
-    """
-    for i in range(n):
-        fd(t, length)
-        lt(t, angle)
-\end{verbatim}
-\afterverb
-%
-This docstring is a triple-quoted string, also known
-as a multiline string because the triple quotes allow the string
-to span more than one line.
-
-\index{quotation mark}
-\index{triple-quoted string}
-\index{string!triple-quoted}
-\index{multiline string}
-\index{string!multiline}
-
-It is terse, but it contains the essential information
-someone would need to use this function.  It explains concisely what
-the function does (without getting into the details of how it does
-it).  It explains what effect each parameter has on the behavior of
-the function and what type each parameter should be (if it is not
-obvious).
-
-Writing this kind of documentation is an important part of interface
-design.  A well-designed interface should be simple to explain;
-if you are having a hard time explaining one of your functions,
-that might be a sign that the interface could be improved.
 
 
 \section{Debugging}
@@ -3871,35 +3748,35 @@ An interface is like a contract between a function and a caller.
 The caller agrees to provide certain parameters and the function
 agrees to do certain work.
 
-For example, {\tt polyline} requires four arguments.  The first
-has to be a Turtle.  The second has to be a number, and it should
-probably be positive, although it turns out that the function
-works even if it isn't.  The third argument should be an integer;
-{\tt range} complains otherwise (depending on which version
-of Python you are running).  The fourth has to be a number,
-which is understood to be in degrees.
+For example, {\tt greet} requires two arguments.  The first is intended to be
+a string with a greeting word inside.  The second is intended to be a name, 
+although we have seen that we can pass other strings in like ``everybody'' and
+it still works.
 
-These requirements are called {\bf preconditions} because they
-are supposed to be true before the function starts executing.
+If we were to call {\tt greet} directly with integers as arguments,
+like {\tt greet(2, 3)}, then we would get an error, because Ruby would try to
+perform mathematical addition between strings and numbers, which is
+impossible. So, a programmer who uses this method must know to call it with
+appropriate parameters.
+
+This requirement is called a {\bf precondition} because it
+is supposed to be true before the method starts executing.
 Conversely, conditions at the end of the function are
 {\bf postconditions}.  Postconditions include the intended
-effect of the function (like drawing line segments) and any
-side effects (like moving the Turtle or making other changes
-in the World).
+effect of the function (like returning a usable string) and any
+side effects (like printing something to the screen or the browser).
 
 \index{precondition}
 \index{postcondition}
 
 Preconditions are the responsibility of the caller.  If the caller
-violates a (properly documented!) precondition and the function
-doesn't work correctly, the bug is in the caller, not the function.
+violates a (properly documented!) precondition and the method
+doesn't work correctly, the bug is in the caller, not the method.
 
-% Removing this because we haven't seen conditionals yet!
-%However, for purposes of debugging it is often a good idea for
-%functions to check their preconditions rather than assume they are
-%true.  If every function checks its preconditions before starting,
-%then if something goes wrong, you will know which function to blame.
-
+One of the reasons that programming languages like Ruby show a backtrace
+when an error occurs is so that the programmer can see which line of code
+called a method with incorrect parameters. There are many more types of errors
+that a backtrace can help with, but this is one of the most common.
 
 \section{Glossary}
 
