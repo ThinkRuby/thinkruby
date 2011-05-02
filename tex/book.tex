@@ -3782,37 +3782,84 @@ that a backtrace can help with, but this is one of the most common.
 
 \begin{description}
 
-\item[instance:] A member of a set.  The TurtleWorld in this
-chapter is a member of the set of TurtleWorlds.
-\index{instance}
+\item[gem:] A named collection of Ruby files that you can download and install
+easily. You can then use them as part of your program.
+\index{gem}
 
-\item[loop:] A part of a program that can execute repeatedly.
-\index{loop}
+\item[Sinatra:] A gem for quickly creating web applications in Ruby.
+\index{Sinatra}
+\index{gem|Sinatra}
 
-\item[encapsulation:] The process of transforming a sequence of
-statements into a function definition.
-\index{encapsulation}
+\item[server:] A program that waits for a connection from another program, and
+returns a useful response.
+\index{server}
+
+\item[web server:] A server that generates and delivers web pages.
+\index{server|web}
+\index{web server}
+
+\item[client:] A program that connects to a server and asks for a response.
+\index{client}
+
+\item[web browser:] A client that connects to web servers and displays the
+web sites that are returned.
+\index{client|web browser}
+\index{web browser}
+
+\item[protocol:] The language that clients and servers use to talk to one
+another. Examples include HTTP and FTP.
+\index{protocol}
+
+\item[HTTP:] (HyperText Transfer Protocol) The protocol that web servers and
+web browsers use to talk to one another.
+\index{HTTP}
+
+\item[URL:] (Uniform Resource Locator) A standardized internet address that
+allows a client to find a server and ask it for a particular set of responses.
+\index{URL}
+
+\item[hostname:] The part of a URL that refers to a particular server by name.
+\index{hostname}
+
+\item[port:] The part of a URL that points to a particular server running on a
+host. This part of the URL is optional, because each protocol has a default
+port, such as 80 for HTTP.
+\index{port}
+
+\item[path:] The part of a URL that a client sends to a server. The server
+program uses the path to determine how it should respond.
+\index{path}
 
 \item[generalization:] The process of replacing something
 unnecessarily specific (like a number) with something appropriately
 general (like a variable or parameter).
 \index{generalization}
 
-\item[keyword argument:] An argument that includes the name of
-the parameter as a ``keyword.''
-\index{keyword argument}
-\index{argument!keyword}
+\item[encapsulation:] The process of transforming a sequence of
+statements into a method definition.
+\index{encapsulation}
 
-\item[interface:] A description of how to use a function, including
+\item[interface:] A description of how to use a method, including
 the name and descriptions of the arguments and return value.
 \index{interface}
 
+\item[user:] A person, usually not the programmer, who uses software by
+interacting with a user interface.
+\index{user}
+
+\item[user interface:] (UI) The parts of a program that describe to the user
+how to ask it to do things and show the response of those actions.
+In many ways a user interface is like a method's interface, but at a more
+metaphorical level.
+\index{user interface}
+\index{UI}
+
+\item[refactoring]: A process of rearranging a program to improve method
+interfaces and facilitate code re-use.
+\index{refactoring}
+
 \item[development plan:] A process for writing programs.
 \index{development plan}
-
-\item[docstring:]  A string that appears in a function definition
-to document the function's interface.
-\index{docstring}
 
 \item[precondition:] A requirement that should be satisfied by
 the caller before a function starts.
@@ -3834,76 +3881,30 @@ Download the code in this chapter from
 
 \begin{enumerate}
 
-\item Write appropriate docstrings for {\tt polygon}, {\tt arc} and
-{\tt circle}.
-
 \index{stack diagram}
 
 \item Draw a stack diagram that shows the state of the program
-while executing {\tt circle(bob, radius)}.  You can do the
-arithmetic by hand or add {\tt print} statements to the code.
+while visiting the path {\tt /hi/there/3/times}. Treat the route as if it
+were a method. You could do this by hand, or try adding {\tt puts} statements
+to the code to expose the values of parameters.
 
+\item Write a route for the Pythagorean Theorem, $a^2 + b^2 = c^2$. The route
+should accept values for $a$ and $b$ and solve for $c$. The output should look
+like ``a = 3, b = 4, c = 5''. Hint: Add the appropriate {\tt require}
+statement to the top of the file (before or after the Sinatra require line) so
+that you can use the math methods. Once this is working, write a route for
+solving for $a$ given $a$ and $c$, and another for solving for $b$ given $a$
+and $c$. Check for opportunities to refactor your code so that you don't have
+to duplicate things.
 
-\item The version of {\tt arc} in Section~\ref{refactoring} is not
-very accurate because the linear approximation of the
-circle is always outside the true circle.  As a result,
-the turtle ends up a few units away from the correct
-destination. My solution shows a way to reduce
-the effect of this error.  Read the code and see if it makes
-sense to you.  If you draw a diagram, you might see how it works.
+\item What happens when you have two routes that match the same path? For
+example, {\tt /hello/twice} matches both the {\tt /hello/:name} route and the
+{\tt /:word/twice} route. Change your program in a way that changes
+how it responds to this path.
 
-\end{enumerate}
-
-\end{ex}
-
-
-\begin{ex}
-\index{flower}
-
-Write an appropriately general set of functions that
-can draw flowers like this:
-
-\centerline{\includegraphics[height=1in]{figs/flowers.eps}}
-
-You can download a solution from \url{thinkpython.com/code/flower.py}.
-
-\end{ex}
-
-
-\begin{ex}
-\index{pie}
-
-Write an appropriately general set of functions that
-can draw shapes like this:
-
-\centerline{\includegraphics[height=0.9in]{figs/pies.eps}}
-
-You can download a solution from \url{thinkpython.com/code/pie.py}.
-
-\end{ex}
-
-\begin{ex}
-\index{alphabet}
-\index{turtle typewriter}
-\index{typewriter, turtle}
-
-The letters of the alphabet can be constructed from a moderate
-number of basic elements, like vertical and horizontal lines
-and a few curves.  Design a font that can be drawn with a
-minimal number of basic elements and then write functions
-that draw letters of the alphabet.
-
-You should write one function for each letter, with names
-\verb"draw_a", \verb"draw_b", etc., and put your functions
-in a file named {\tt letters.py}.  You can download a
-``turtle typewriter'' from \url{thinkpython.com/code/typewriter.py}
-to help you test your code.
-
-You can download a solution from \url{thinkpython.com/code/letters.py}.
-
-\end{ex}
-
-
+\item Visit the Sinatra intro at \url{http://www.sinatrarb.com/intro} and read
+the first few sections. Peek ahead a bit to get an idea of what will come
+later, but don't worry if you don't understand everything quite yet.
 
 \chapter{Conditionals and recursion}
 
