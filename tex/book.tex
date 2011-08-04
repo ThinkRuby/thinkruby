@@ -2335,15 +2335,14 @@ the square root of two divided by two:
 You might notice a tiny difference between the two results. This is due to
 the approximation that we mentioned above.
 
-\section{Composition}
-\index{composition}
+\section{Combining methods}
 
 So far, we have looked at the elements of a program---variables,
 expressions, and statements---in isolation, without talking about how to
 combine them.
 
 One of the most useful features of programming languages is their
-ability to take small building blocks and {\bf compose} them.  For
+ability to take small building blocks and combine them.  For
 example, the argument of a method can be any kind of expression,
 including arithmetic operators:
 
@@ -2617,11 +2616,9 @@ Spam
 \end{verbatim}
 \afterverb
 %
-The same rules of composition that apply to built-in methods also
-apply to user-defined methods, so we can use any kind of expression
+The same rules for combining built-in methods also work for
+user-defined methods, so we can use any kind of expression
 as an argument for \verb"print_twice":
-
-\index{composition}
 
 \beforeverb
 \begin{verbatim}
@@ -3041,10 +3038,6 @@ that provides access to the values and methods defined within a module.
 example, a module object like {\tt Math}) by specifying the object name
 followed by a dot (period) and the method name.
 \index{dot notation}
-
-\item[composition:] Using an expression as part of a larger expression,
-or a statement as part of a larger statement.
-\index{composition}
 
 \item[flow of execution:]  The order in which statements are executed during
 a program run.
